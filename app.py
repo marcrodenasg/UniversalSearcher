@@ -27,7 +27,7 @@ cache_file = 'embeddings.pt'
 # Pre-calculate the meaning of the inventory/description
 if os.path.exists(cache_file):
     print("Indexing products...")
-    product_embeddings = torch.load(cache_file)
+    product_embeddings = torch.load(cache_file, map_location=torch.device('cpu'))
 else: #IF the data is new...
     print("First time index...")
     descriptions = [f"{p['productName']} {p['description']}" for p in products]
