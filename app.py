@@ -159,4 +159,7 @@ def ai_search():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5001)
+    # Render provides the port via an environment variable
+    port = int(os.environ.get("PORT", 5001))
+    # '0.0.0.0' tells the app to listen to all outside requests, not just 'localhost'
+    app.run(host='0.0.0.0', port=port)
