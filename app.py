@@ -29,7 +29,7 @@ def ai_search():
     if not query:
         return jsonify(products)
 
-    # AI Magic: Encode the query and compare to inventory
+    # Encode the query and compare to inventory
     query_embedding = model.encode(query, convert_to_tensor=True)
     cos_scores = util.cos_sim(query_embedding, product_embeddings)[0]
     

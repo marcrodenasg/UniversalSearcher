@@ -17,6 +17,7 @@
         {% for p in products %}
         <div class="card">
             <img src="{{ p.imageUrl }}">
+            <p><b style="color:red;">{{ p.brandName }}</b></p>
             <p><strong>{{ p.productName }}</strong></p>
             <p>${{ p.price }}</p>
             <a href="{{ p.productUrl }}" target="_blank">LINK</a>
@@ -39,8 +40,10 @@
                 o.innerHTML = data.map(p => `
                     <div class="card">
                         <img src="${p.imageUrl}">
+                        <p><b style="color:red;">${p.brandName}</b></p>
                         <p><strong>${p.productName}</strong></p>
                         <p>$${p.price}</p>
+                        <a href="${p.productUrl}" target="_blank">LINK</a>
                         <a href="${p.productUrl}" target="_blank">LINK</a>
                     </div>
                 `).join('');
