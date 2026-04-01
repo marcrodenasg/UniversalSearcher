@@ -35,3 +35,15 @@ brand { color: red; font-weight: bold; text-transform: uppercase; }
     font-weight: bold;
     display: inline-block;
 }
+
+/* Ebay distinction !*/
+
+.card[data-shop="ebay"] {
+    border-top: 3px solid #005310; /* A "Live" green accent */
+    transition: transform 0.2s;
+}
+
+.card[data-shop="ebay"]:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
