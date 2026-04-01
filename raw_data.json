@@ -1,899 +1,52 @@
 [
     {
-  "id": 91969696,
-  "collectible_id": 91969696,
-  "rank": 564,
-  "badges": [],
-  "category": "footwear",
-  "category_path": "footwear.hitop_sneakers",
-  "category_size": "footwear.9.5",
-  "color": "beige",
-  "condition": "is_used",
-  "cover_photo": {
-    "id": 677080987,
-    "listing_id": 91969696,
-    "image": null,
-    "created_at": "2026-02-04T16:59:07.857Z",
-    "updated_at": "2026-02-04T16:59:07.906Z",
-    "photoable_id": 91969696,
-    "photoable_type": "Listing",
-    "width": 0,
-    "height": 0,
-    "url": "https://media-assets.grailed.com/prd/listing/temp/da06134479b4496eb856f0b06f52aa99",
-    "position": 0,
-    "rotate": 0,
-    "image_url": "https://media-assets.grailed.com/prd/listing/temp/da06134479b4496eb856f0b06f52aa99",
-    "deleted_at": null
-  },
-  "created_at": "2026-02-04T17:32:41.930Z",
-  "department": "menswear",
-  "designer_names": "Saint Laurent Paris",
-  "designers": [
-    {
-      "id": 1621,
-      "name": "Saint Laurent Paris"
-    }
-  ],
-  "location": "United States",
-  "price_drops": [],
-  "price": 500,
-  "price_i": 500,
-  "price_updated_at": "2026-02-04T17:32:41.930Z",
-  "size": "9.5",
-  "strata": "grailed",
-  "title": "Saint Laurent “Smoking Forever” sneakers",
-  "user": {
-    "id": 12719705,
-    "username": "e85_ALYX"
-  },
-  "objectID": "360108",
-  "_highlightResult": {
-    "category_path": {
-      "value": "footwear.hitop_sneakers",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "color": {
-      "value": "beige",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "department": {
-      "value": "menswear",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "designers": [
-      {
-        "name": {
-          "value": "Saint Laurent Paris",
-          "matchLevel": "none",
-          "matchedWords": []
-        }
-      }
-    ],
-    "size": {
-      "value": "9.5",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "title": {
-      "value": "Saint Laurent “Smoking Forever” sneakers",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "user": {
-      "username": {
-        "value": "e85_ALYX",
-        "matchLevel": "none",
-        "matchedWords": []
-      }
-    }
-  },
-  "_rankingInfo": {
-    "nbTypos": 0,
-    "firstMatchedWord": 0,
-    "proximityDistance": 0,
-    "userScore": 67,
-    "geoDistance": 0,
-    "geoPrecision": 1,
-    "nbExactWords": 0,
-    "words": 0,
-    "filters": 2
-  }
-},
-{
-  "id": 94134635,
-  "collectible_id": 94134635,
-  "rank": 618,
-  "badges": [],
-  "category": "accessories",
-  "category_path": "accessories.jewelry_watches",
-  "category_size": "accessories.one_size",
-  "color": "silver",
-  "condition": "is_gently_used",
-  "cover_photo": {
-    "id": 694356801,
-    "listing_id": 94134635,
-    "image": null,
-    "created_at": "2026-03-20T12:20:39.978Z",
-    "updated_at": "2026-03-20T12:20:40.047Z",
-    "photoable_id": 94134635,
-    "photoable_type": "Listing",
-    "width": 900,
-    "height": 1200,
-    "url": "https://media-assets.grailed.com/prd/listing/47447298/020fc175fb344e148f73ac6c8494ad05",
-    "position": 0,
-    "rotate": 0,
-    "image_url": "https://media-assets.grailed.com/prd/listing/47447298/020fc175fb344e148f73ac6c8494ad05",
-    "deleted_at": null
-  },
-  "created_at": "2026-03-20T12:20:49.898Z",
-  "department": "menswear",
-  "designer_names": "Maison Margiela",
-  "designers": [
-    {
-      "id": 2308,
-      "name": "Maison Margiela"
-    }
-  ],
-  "location": "United Kingdom",
-  "price_drops": [
-    220,
-    198
-  ],
-  "price": 198,
-  "price_i": 198,
-  "price_updated_at": "2026-03-27T16:24:49.433Z",
-  "size": "one size",
-  "strata": "grailed",
-  "title": "College Ring",
-  "user": {
-    "id": 5009861,
-    "username": "N-GYNN"
-  },
-  "objectID": "360162",
-  "_highlightResult": {
-    "category_path": {
-      "value": "accessories.jewelry_watches",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "color": {
-      "value": "silver",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "department": {
-      "value": "menswear",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "designers": [
-      {
-        "name": {
-          "value": "Maison Margiela",
-          "matchLevel": "none",
-          "matchedWords": []
-        }
-      }
-    ],
-    "size": {
-      "value": "one size",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "title": {
-      "value": "College Ring",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "user": {
-      "username": {
-        "value": "N-GYNN",
-        "matchLevel": "none",
-        "matchedWords": []
-      }
-    }
-  },
-  "_rankingInfo": {
-    "nbTypos": 0,
-    "firstMatchedWord": 0,
-    "proximityDistance": 0,
-    "userScore": 50,
-    "geoDistance": 0,
-    "geoPrecision": 1,
-    "nbExactWords": 0,
-    "words": 0,
-    "filters": 2
-  }
-},
-{
-  "id": 92960840,
-  "collectible_id": 92960840,
-  "rank": 11,
-  "badges": [],
-  "category": "tops",
-  "category_path": "tops.sweatshirts_hoodies",
-  "category_size": "tops.m",
-  "color": "white",
-  "condition": "is_new",
-  "cover_photo": {
-    "id": 685005744,
-    "listing_id": 92960840,
-    "image": null,
-    "created_at": "2026-02-25T16:36:48.030Z",
-    "updated_at": "2026-02-25T16:36:48.096Z",
-    "photoable_id": 92960840,
-    "photoable_type": "Listing",
-    "width": null,
-    "height": null,
-    "url": "https://media-assets.grailed.com/prd/listing/temp/771c72b555bd471aa9cc73dda8133d25",
-    "position": 0,
-    "rotate": 0,
-    "image_url": "https://media-assets.grailed.com/prd/listing/temp/771c72b555bd471aa9cc73dda8133d25",
-    "deleted_at": null
-  },
-  "created_at": "2026-02-25T16:36:54.891Z",
-  "department": "menswear",
-  "designer_names": "D.A.R.E",
-  "designers": [
-    {
-      "id": 5735,
-      "name": "D.A.R.E"
-    }
-  ],
-  "location": "United States",
-  "price_drops": [
-    25,
-    22,
-    19
-  ],
-  "price": 19,
-  "price_i": 19,
-  "price_updated_at": "2026-03-25T17:25:51.924Z",
-  "size": "m",
-  "strata": "basic",
-  "title": "Vintage Silk Road Positive experience graphic hoodie M white",
-  "user": {
-    "id": 988233,
-    "username": "closetstealls"
-  },
-  "objectID": "119605",
-  "_highlightResult": {
-    "category_path": {
-      "value": "tops.sweatshirts_hoodies",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "color": {
-      "value": "white",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "department": {
-      "value": "menswear",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "designers": [
-      {
-        "name": {
-          "value": "D.A.R.E",
-          "matchLevel": "none",
-          "matchedWords": []
-        }
-      }
-    ],
-    "size": {
-      "value": "m",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "title": {
-      "value": "Vintage Silk Road Positive experience graphic hoodie M white",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "user": {
-      "username": {
-        "value": "closetstealls",
-        "matchLevel": "none",
-        "matchedWords": []
-      }
-    }
-  },
-  "_rankingInfo": {
-    "nbTypos": 0,
-    "firstMatchedWord": 0,
-    "proximityDistance": 0,
-    "userScore": 31,
-    "geoDistance": 0,
-    "geoPrecision": 1,
-    "nbExactWords": 0,
-    "words": 0,
-    "filters": 1
-  }
-},
-{
-  "id": 93899691,
-  "collectible_id": 93899691,
-  "rank": 13,
-  "badges": [],
-  "category": "tops",
-  "category_path": "tops.short_sleeve_shirts",
-  "category_size": "tops.m",
-  "color": "multi",
-  "condition": "is_gently_used",
-  "cover_photo": {
-    "id": 692486220,
-    "listing_id": 93899691,
-    "image": null,
-    "created_at": "2026-03-15T18:41:05.257Z",
-    "updated_at": "2026-03-15T18:41:05.307Z",
-    "photoable_id": 93899691,
-    "photoable_type": "Listing",
-    "width": 0,
-    "height": 0,
-    "url": "https://media-assets.grailed.com/prd/listing/temp/303cd39edc824e6b9dabe488f3535965",
-    "position": 0,
-    "rotate": 0,
-    "image_url": "https://media-assets.grailed.com/prd/listing/temp/303cd39edc824e6b9dabe488f3535965",
-    "deleted_at": null
-  },
-  "created_at": "2026-03-15T18:41:12.507Z",
-  "department": "menswear",
-  "designer_names": "Body Glove",
-  "designers": [
-    {
-      "id": 33112,
-      "name": "Body Glove"
-    }
-  ],
-  "location": "Europe",
-  "price_drops": [],
-  "price": 55,
-  "price_i": 55,
-  "price_updated_at": "2026-03-22T19:43:04.174Z",
-  "size": "m",
-  "strata": "basic",
-  "title": "Vintage Body Glove T-shirt art tee Surf Skate all over print",
-  "user": {
-    "id": 5249432,
-    "username": "ddmmyytr"
-  },
-  "objectID": "119607",
-  "_highlightResult": {
-    "category_path": {
-      "value": "tops.short_sleeve_shirts",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "color": {
-      "value": "multi",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "department": {
-      "value": "menswear",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "designers": [
-      {
-        "name": {
-          "value": "Body Glove",
-          "matchLevel": "none",
-          "matchedWords": []
-        }
-      }
-    ],
-    "size": {
-      "value": "m",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "title": {
-      "value": "Vintage Body Glove T-shirt art tee Surf Skate all over print",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "user": {
-      "username": {
-        "value": "ddmmyytr",
-        "matchLevel": "none",
-        "matchedWords": []
-      }
-    }
-  },
-  "_rankingInfo": {
-    "nbTypos": 0,
-    "firstMatchedWord": 0,
-    "proximityDistance": 0,
-    "userScore": 29,
-    "geoDistance": 0,
-    "geoPrecision": 1,
-    "nbExactWords": 0,
-    "words": 0,
-    "filters": 1
-  }
-},
-{
-  "id": 92566791,
-  "collectible_id": 92566791,
-  "rank": 24,
-  "badges": [],
-  "category": "womens_bags_luggage",
-  "category_path": "womens_bags_luggage.handle_bags",
-  "category_size": "womens_bags_luggage.one_size",
-  "color": "black",
-  "condition": "is_used",
-  "cover_photo": {
-    "id": 681847054,
-    "listing_id": 92566791,
-    "image": null,
-    "created_at": "2026-02-17T13:18:02.861Z",
-    "updated_at": "2026-02-17T13:18:02.940Z",
-    "photoable_id": 92566791,
-    "photoable_type": "Listing",
-    "width": 3175,
-    "height": 3500,
-    "url": "https://media-assets.grailed.com/prd/listing/temp/2b8077b7e5634982a8557bf0d1739db5",
-    "position": 0,
-    "rotate": 0,
-    "image_url": "https://media-assets.grailed.com/prd/listing/temp/2b8077b7e5634982a8557bf0d1739db5",
-    "deleted_at": null
-  },
-  "created_at": "2026-02-17T13:18:10.207Z",
-  "department": "womenswear",
-  "designer_names": "Guess",
-  "designers": [
-    {
-      "id": 251,
-      "name": "Guess"
-    }
-  ],
-  "location": "Europe",
-  "price_drops": [
-    90,
-    81
-  ],
-  "price": 81,
-  "price_i": 81,
-  "price_updated_at": "2026-03-20T19:25:55.631Z",
-  "size": "one size",
-  "strata": "basic",
-  "title": "Vintage 2000s Guess Black Leather Bag Y2K Metal Ring Handle",
-  "user": {
-    "id": 3401147,
-    "username": "HypnoFrog"
-  },
-  "objectID": "119618",
-  "_highlightResult": {
-    "category_path": {
-      "value": "womens_bags_luggage.handle_bags",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "color": {
-      "value": "black",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "department": {
-      "value": "womenswear",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "designers": [
-      {
-        "name": {
-          "value": "Guess",
-          "matchLevel": "none",
-          "matchedWords": []
-        }
-      }
-    ],
-    "size": {
-      "value": "one size",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "title": {
-      "value": "Vintage 2000s Guess Black Leather Bag Y2K Metal Ring Handle",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "user": {
-      "username": {
-        "value": "HypnoFrog",
-        "matchLevel": "none",
-        "matchedWords": []
-      }
-    }
-  },
-  "_rankingInfo": {
-    "nbTypos": 0,
-    "firstMatchedWord": 0,
-    "proximityDistance": 0,
-    "userScore": 19,
-    "geoDistance": 0,
-    "geoPrecision": 1,
-    "nbExactWords": 0,
-    "words": 0,
-    "filters": 1
-  }
-},
-{
-  "id": 87616355,
-  "collectible_id": 87616355,
-  "rank": 2,
-  "badges": [],
-  "category": "footwear",
-  "category_path": "footwear.boots",
-  "category_size": "footwear.10.5",
-  "color": "gray",
-  "condition": "is_new",
-  "cover_photo": {
-    "id": 642762122,
-    "listing_id": 87616355,
-    "image": null,
-    "created_at": "2025-11-09T23:04:29.813Z",
-    "updated_at": "2025-11-09T23:04:29.879Z",
-    "photoable_id": 87616355,
-    "photoable_type": "Listing",
-    "width": null,
-    "height": null,
-    "url": "https://media-assets.grailed.com/prd/listing/temp/3860f73a6adc41b484100ecca1a2cbbc",
-    "position": 0,
-    "rotate": 0,
-    "image_url": "https://media-assets.grailed.com/prd/listing/temp/3860f73a6adc41b484100ecca1a2cbbc",
-    "deleted_at": null
-  },
-  "created_at": "2025-11-09T23:07:27.475Z",
-  "department": "menswear",
-  "designer_names": "Diesel",
-  "designers": [
-    {
-      "id": 43,
-      "name": "Diesel"
-    }
-  ],
-  "location": "Europe",
-  "price_drops": [
-    350,
-    315
-  ],
-  "price": 315,
-  "price_i": 315,
-  "price_updated_at": "2025-11-16T17:43:54.953Z",
-  "size": "10.5",
-  "strata": "grailed",
-  "title": "Diesel D Hammer Boots",
-  "user": {
-    "id": 17549014,
-    "username": "arthurlcmt"
-  },
-  "objectID": "422258",
-  "_highlightResult": {
-    "category_path": {
-      "value": "footwear.boots",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "color": {
-      "value": "gray",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "department": {
-      "value": "menswear",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "designers": [
-      {
-        "name": {
-          "value": "Diesel",
-          "matchLevel": "none",
-          "matchedWords": []
-        }
-      }
-    ],
-    "size": {
-      "value": "10.5",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "title": {
-      "value": "Diesel D Hammer Boots",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "user": {
-      "username": {
-        "value": "arthurlcmt",
-        "matchLevel": "none",
-        "matchedWords": []
-      }
-    }
-  },
-  "_rankingInfo": {
-    "nbTypos": 0,
-    "firstMatchedWord": 0,
-    "proximityDistance": 0,
-    "userScore": 43,
-    "geoDistance": 0,
-    "geoPrecision": 1,
-    "nbExactWords": 0,
-    "words": 0,
-    "filters": 1
-  }
-},
-{
-  "id": 92707861,
-  "collectible_id": 92707861,
-  "rank": 5,
-  "badges": [],
-  "category": "outerwear",
-  "category_path": "outerwear.light_jackets",
-  "category_size": "outerwear.l",
-  "color": "brown",
-  "condition": "is_gently_used",
-  "cover_photo": {
-    "id": 682975938,
-    "listing_id": 92707861,
-    "image": null,
-    "created_at": "2026-02-20T14:41:35.332Z",
-    "updated_at": "2026-02-20T14:41:35.456Z",
-    "photoable_id": 92707861,
-    "photoable_type": "Listing",
-    "width": null,
-    "height": null,
-    "url": "https://media-assets.grailed.com/prd/listing/temp/584a32ffb5934e4db88033340d5d57ad",
-    "position": 0,
-    "rotate": 0,
-    "image_url": "https://media-assets.grailed.com/prd/listing/temp/584a32ffb5934e4db88033340d5d57ad",
-    "deleted_at": null
-  },
-  "created_at": "2026-02-20T14:41:49.146Z",
-  "department": "menswear",
-  "designer_names": "Diesel",
-  "designers": [
-    {
-      "id": 43,
-      "name": "Diesel"
-    }
-  ],
-  "location": "United States",
-  "price_drops": [
-    160,
-    144,
-    129,
-    125
-  ],
-  "price": 125,
-  "price_i": 125,
-  "price_updated_at": "2026-03-06T21:02:01.541Z",
-  "size": "l",
-  "strata": "grailed",
-  "title": "Abstract Pattern Diesel Arctic Glow Fleece Sweatshirt",
-  "user": {
-    "id": 1825586,
-    "username": "CarharrtHunter"
-  },
-  "objectID": "422261",
-  "_highlightResult": {
-    "category_path": {
-      "value": "outerwear.light_jackets",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "color": {
-      "value": "brown",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "department": {
-      "value": "menswear",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "designers": [
-      {
-        "name": {
-          "value": "Diesel",
-          "matchLevel": "none",
-          "matchedWords": []
-        }
-      }
-    ],
-    "size": {
-      "value": "l",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "title": {
-      "value": "Abstract Pattern Diesel Arctic Glow Fleece Sweatshirt",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "user": {
-      "username": {
-        "value": "CarharrtHunter",
-        "matchLevel": "none",
-        "matchedWords": []
-      }
-    }
-  },
-  "_rankingInfo": {
-    "nbTypos": 0,
-    "firstMatchedWord": 0,
-    "proximityDistance": 0,
-    "userScore": 41,
-    "geoDistance": 0,
-    "geoPrecision": 1,
-    "nbExactWords": 0,
-    "words": 0,
-    "filters": 1
-  }
-},
-{
-  "id": 93626875,
-  "collectible_id": 93626875,
-  "rank": 18,
-  "badges": [],
-  "category": "outerwear",
-  "category_path": "outerwear.denim_jackets",
-  "category_size": "outerwear.xxl",
-  "color": "black",
-  "condition": "is_gently_used",
-  "cover_photo": {
-    "id": 690298170,
-    "listing_id": 93626875,
-    "image": null,
-    "created_at": "2026-03-10T17:10:27.263Z",
-    "updated_at": "2026-03-10T17:10:27.332Z",
-    "photoable_id": 93626875,
-    "photoable_type": "Listing",
-    "width": null,
-    "height": null,
-    "url": "https://media-assets.grailed.com/prd/listing/temp/ab4ae77d74eb432eb97a684ae73998d3",
-    "position": 0,
-    "rotate": 0,
-    "image_url": "https://media-assets.grailed.com/prd/listing/temp/ab4ae77d74eb432eb97a684ae73998d3",
-    "deleted_at": null
-  },
-  "created_at": "2026-03-10T17:10:34.597Z",
-  "department": "menswear",
-  "designer_names": "Diesel",
-  "designers": [
-    {
-      "id": 43,
-      "name": "Diesel"
-    }
-  ],
-  "location": "United States",
-  "price_drops": [
-    550,
-    495,
-    445,
-    400
-  ],
-  "price": 400,
-  "price_i": 400,
-  "price_updated_at": "2026-03-31T17:40:05.018Z",
-  "size": "xxl",
-  "strata": "grailed",
-  "title": "Diesel D-Delirious-A coat trench",
-  "user": {
-    "id": 3095455,
-    "username": "knawtkai"
-  },
-  "objectID": "422274",
-  "_highlightResult": {
-    "category_path": {
-      "value": "outerwear.denim_jackets",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "color": {
-      "value": "black",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "department": {
-      "value": "menswear",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "designers": [
-      {
-        "name": {
-          "value": "Diesel",
-          "matchLevel": "none",
-          "matchedWords": []
-        }
-      }
-    ],
-    "size": {
-      "value": "xxl",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "title": {
-      "value": "Diesel D-Delirious-A coat trench",
-      "matchLevel": "none",
-      "matchedWords": []
-    },
-    "user": {
-      "username": {
-        "value": "knawtkai",
-        "matchLevel": "none",
-        "matchedWords": []
-      }
-    }
-  },
-  "_rankingInfo": {
-    "nbTypos": 0,
-    "firstMatchedWord": 0,
-    "proximityDistance": 0,
-    "userScore": 29,
-    "geoDistance": 0,
-    "geoPrecision": 1,
-    "nbExactWords": 0,
-    "words": 0,
-    "filters": 1
-  }
-},
-{
-  "id": 89348949,
-  "collectible_id": 89348949,
-  "rank": 34,
+  "id": 91175420,
+  "collectible_id": 91175420,
+  "rank": 1,
   "badges": [],
   "category": "bottoms",
   "category_path": "bottoms.denim",
-  "category_size": "bottoms.34",
+  "category_size": "bottoms.33",
   "color": "blue",
   "condition": "is_gently_used",
   "cover_photo": {
-    "id": 656388436,
-    "listing_id": 89348949,
+    "id": 670712525,
+    "listing_id": 91175420,
     "image": null,
-    "created_at": "2025-12-15T08:25:12.391Z",
-    "updated_at": "2025-12-15T08:25:12.402Z",
-    "photoable_id": 89348949,
+    "created_at": "2026-01-19T20:51:59.697Z",
+    "updated_at": "2026-01-19T20:51:59.765Z",
+    "photoable_id": 91175420,
     "photoable_type": "Listing",
-    "width": null,
-    "height": null,
-    "url": "https://media-assets.grailed.com/prd/listing/temp/409447ee24f148dc90453eee4c3de4c4",
+    "width": 0,
+    "height": 0,
+    "url": "https://media-assets.grailed.com/prd/listing/temp/89511dcca8664df09e37073b779b4d06",
     "position": 0,
     "rotate": 0,
-    "image_url": "https://media-assets.grailed.com/prd/listing/temp/409447ee24f148dc90453eee4c3de4c4",
+    "image_url": "https://media-assets.grailed.com/prd/listing/temp/89511dcca8664df09e37073b779b4d06",
     "deleted_at": null
   },
-  "created_at": "2025-12-15T03:33:05.803Z",
+  "created_at": "2026-01-20T03:40:08.942Z",
   "department": "menswear",
-  "designer_names": "Diesel",
+  "designer_names": "Balmain",
   "designers": [
     {
-      "id": 43,
-      "name": "Diesel"
+      "id": 3,
+      "name": "Balmain"
     }
   ],
-  "location": "United States",
+  "location": "Asia",
   "price_drops": [],
-  "price": 72,
-  "price_i": 72,
-  "price_updated_at": "2025-12-15T03:33:05.803Z",
-  "size": "34",
+  "price": 255,
+  "price_i": 255,
+  "price_updated_at": "2026-01-20T03:40:08.942Z",
+  "size": "33",
   "strata": "grailed",
-  "title": "Vintage Diesel Zathan Bootcut jeans size 34x31",
+  "title": "Balmain biker mudwash denim",
   "user": {
-    "id": 8787039,
-    "username": "leofeldmann"
+    "id": 10348945,
+    "username": "alternoism"
   },
-  "objectID": "422290",
+  "objectID": "1",
   "_highlightResult": {
     "category_path": {
       "value": "bottoms.denim",
@@ -913,25 +66,25 @@
     "designers": [
       {
         "name": {
-          "value": "Diesel",
+          "value": "Balmain",
           "matchLevel": "none",
           "matchedWords": []
         }
       }
     ],
     "size": {
-      "value": "34",
+      "value": "33",
       "matchLevel": "none",
       "matchedWords": []
     },
     "title": {
-      "value": "Vintage Diesel Zathan Bootcut jeans size 34x31",
+      "value": "Balmain biker mudwash denim",
       "matchLevel": "none",
       "matchedWords": []
     },
     "user": {
       "username": {
-        "value": "leofeldmann",
+        "value": "alternoism",
         "matchLevel": "none",
         "matchedWords": []
       }
@@ -941,7 +94,7 @@
     "nbTypos": 0,
     "firstMatchedWord": 0,
     "proximityDistance": 0,
-    "userScore": 13,
+    "userScore": 49,
     "geoDistance": 0,
     "geoPrecision": 1,
     "nbExactWords": 0,
@@ -950,66 +103,172 @@
   }
 },
 {
-  "id": 93487082,
-  "collectible_id": 93487082,
-  "rank": 38,
+  "id": 91646198,
+  "collectible_id": 91646198,
+  "rank": 6,
   "badges": [],
-  "category": "tops",
-  "category_path": "tops.sweaters_knitwear",
-  "category_size": "tops.l",
+  "category": "womens_accessories",
+  "category_path": "womens_accessories.hats",
+  "category_size": "womens_accessories.one_size",
   "color": "black",
   "condition": "is_gently_used",
   "cover_photo": {
-    "id": 689171340,
-    "listing_id": 93487082,
+    "id": 674456159,
+    "listing_id": 91646198,
     "image": null,
-    "created_at": "2026-03-08T00:06:36.658Z",
-    "updated_at": "2026-03-08T00:06:36.727Z",
-    "photoable_id": 93487082,
+    "created_at": "2026-01-29T07:29:23.332Z",
+    "updated_at": "2026-01-29T07:29:23.385Z",
+    "photoable_id": 91646198,
     "photoable_type": "Listing",
-    "width": 0,
-    "height": 0,
-    "url": "https://media-assets.grailed.com/prd/listing/temp/ba550de28ac14c4da5a1eed132d85f3e",
+    "width": null,
+    "height": null,
+    "url": "https://media-assets.grailed.com/prd/listing/temp/9f36571db06046d2b42105fc3da9c3af",
     "position": 0,
     "rotate": 0,
-    "image_url": "https://media-assets.grailed.com/prd/listing/temp/ba550de28ac14c4da5a1eed132d85f3e",
+    "image_url": "https://media-assets.grailed.com/prd/listing/temp/9f36571db06046d2b42105fc3da9c3af",
     "deleted_at": null
   },
-  "created_at": "2026-03-08T00:06:48.999Z",
-  "department": "menswear",
-  "designer_names": "Diesel",
+  "created_at": "2026-01-29T08:54:17.687Z",
+  "department": "womenswear",
+  "designer_names": "Chanel",
   "designers": [
     {
-      "id": 43,
-      "name": "Diesel"
+      "id": 1505,
+      "name": "Chanel"
     }
   ],
-  "location": "United States",
+  "location": "Asia",
   "price_drops": [
-    75,
-    67,
-    60,
-    54
+    3500,
+    3150,
+    2900
   ],
-  "price": 54,
-  "price_i": 54,
-  "price_updated_at": "2026-03-28T17:19:48.082Z",
-  "size": "l",
+  "price": 2900,
+  "price_i": 2900,
+  "price_updated_at": "2026-02-05T17:44:56.053Z",
+  "size": "one size",
   "strata": "grailed",
-  "title": "Japan Dolce Gabbana Vibe Ribbed Knit Sweater LGB Style",
+  "title": "chanel flight cap",
   "user": {
-    "id": 6590927,
-    "username": "1Drac"
+    "id": 14561097,
+    "username": "__camsuru"
   },
-  "objectID": "422294",
+  "objectID": "6",
   "_highlightResult": {
     "category_path": {
-      "value": "tops.sweaters_knitwear",
+      "value": "womens_accessories.hats",
       "matchLevel": "none",
       "matchedWords": []
     },
     "color": {
       "value": "black",
+      "matchLevel": "none",
+      "matchedWords": []
+    },
+    "department": {
+      "value": "womenswear",
+      "matchLevel": "none",
+      "matchedWords": []
+    },
+    "designers": [
+      {
+        "name": {
+          "value": "Chanel",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    ],
+    "size": {
+      "value": "one size",
+      "matchLevel": "none",
+      "matchedWords": []
+    },
+    "title": {
+      "value": "chanel flight cap",
+      "matchLevel": "none",
+      "matchedWords": []
+    },
+    "user": {
+      "username": {
+        "value": "__camsuru",
+        "matchLevel": "none",
+        "matchedWords": []
+      }
+    }
+  },
+  "_rankingInfo": {
+    "nbTypos": 0,
+    "firstMatchedWord": 0,
+    "proximityDistance": 0,
+    "userScore": 45,
+    "geoDistance": 0,
+    "geoPrecision": 1,
+    "nbExactWords": 0,
+    "words": 0,
+    "filters": 1
+  }
+},
+{
+  "id": 94102963,
+  "collectible_id": 94102963,
+  "rank": 33,
+  "badges": [],
+  "category": "tops",
+  "category_path": "tops.sweatshirts_hoodies",
+  "category_size": "tops.m",
+  "color": "blue",
+  "condition": "is_new",
+  "cover_photo": {
+    "id": 694118654,
+    "listing_id": 94102963,
+    "image": null,
+    "created_at": "2026-03-19T19:43:40.660Z",
+    "updated_at": "2026-03-19T19:43:41.028Z",
+    "photoable_id": 94102963,
+    "photoable_type": "Listing",
+    "width": 0,
+    "height": 0,
+    "url": "https://media-assets.grailed.com/prd/listing/temp/a4a8565d48174308ac4fe67c0f0392f7",
+    "position": 0,
+    "rotate": 0,
+    "image_url": "https://media-assets.grailed.com/prd/listing/temp/a4a8565d48174308ac4fe67c0f0392f7",
+    "deleted_at": null
+  },
+  "created_at": "2026-03-19T19:50:38.925Z",
+  "department": "menswear",
+  "designer_names": "Maison Margiela × Supreme",
+  "designers": [
+    {
+      "id": 2308,
+      "name": "Maison Margiela"
+    },
+    {
+      "id": 6,
+      "name": "Supreme"
+    }
+  ],
+  "location": "United States",
+  "price_drops": [],
+  "price": 745,
+  "price_i": 745,
+  "price_updated_at": "2026-03-19T19:50:38.925Z",
+  "size": "m",
+  "strata": "hype",
+  "title": "MM6 Supreme Box Logo Zip",
+  "user": {
+    "id": 9407846,
+    "username": "GrailsandGrails"
+  },
+  "objectID": "33",
+  "_highlightResult": {
+    "category_path": {
+      "value": "tops.sweatshirts_hoodies",
+      "matchLevel": "none",
+      "matchedWords": []
+    },
+    "color": {
+      "value": "blue",
       "matchLevel": "none",
       "matchedWords": []
     },
@@ -1021,25 +280,32 @@
     "designers": [
       {
         "name": {
-          "value": "Diesel",
+          "value": "Maison Margiela",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      },
+      {
+        "name": {
+          "value": "Supreme",
           "matchLevel": "none",
           "matchedWords": []
         }
       }
     ],
     "size": {
-      "value": "l",
+      "value": "m",
       "matchLevel": "none",
       "matchedWords": []
     },
     "title": {
-      "value": "Japan Dolce Gabbana Vibe Ribbed Knit Sweater LGB Style",
+      "value": "MM6 Supreme Box Logo Zip",
       "matchLevel": "none",
       "matchedWords": []
     },
     "user": {
       "username": {
-        "value": "1Drac",
+        "value": "GrailsandGrails",
         "matchLevel": "none",
         "matchedWords": []
       }
@@ -1049,7 +315,7 @@
     "nbTypos": 0,
     "firstMatchedWord": 0,
     "proximityDistance": 0,
-    "userScore": 9,
+    "userScore": 21,
     "geoDistance": 0,
     "geoPrecision": 1,
     "nbExactWords": 0,
@@ -1058,9 +324,9 @@
   }
 },
 {
-  "id": 93688796,
-  "collectible_id": 93688796,
-  "rank": 39,
+  "id": 92237265,
+  "collectible_id": 92237265,
+  "rank": 37,
   "badges": [],
   "category": "footwear",
   "category_path": "footwear.hitop_sneakers",
@@ -1068,46 +334,47 @@
   "color": "black",
   "condition": "is_used",
   "cover_photo": {
-    "id": 690812129,
-    "listing_id": 93688796,
+    "id": 679212940,
+    "listing_id": 92237265,
     "image": null,
-    "created_at": "2026-03-11T20:15:49.905Z",
-    "updated_at": "2026-03-11T20:15:49.977Z",
-    "photoable_id": 93688796,
+    "created_at": "2026-02-10T03:45:06.729Z",
+    "updated_at": "2026-02-10T03:45:06.791Z",
+    "photoable_id": 92237265,
     "photoable_type": "Listing",
     "width": null,
     "height": null,
-    "url": "https://media-assets.grailed.com/prd/listing/temp/bab506b1971347b6b16b7cbd3a26c8d5",
+    "url": "https://media-assets.grailed.com/prd/listing/temp/ea445a83077a40e48d393af35b59b56f",
     "position": 0,
     "rotate": 0,
-    "image_url": "https://media-assets.grailed.com/prd/listing/temp/bab506b1971347b6b16b7cbd3a26c8d5",
+    "image_url": "https://media-assets.grailed.com/prd/listing/temp/ea445a83077a40e48d393af35b59b56f",
     "deleted_at": null
   },
-  "created_at": "2026-03-11T20:16:01.295Z",
+  "created_at": "2026-02-10T03:45:15.700Z",
   "department": "menswear",
-  "designer_names": "Diesel",
+  "designer_names": "Saint Laurent Paris",
   "designers": [
     {
-      "id": 43,
-      "name": "Diesel"
+      "id": 1621,
+      "name": "Saint Laurent Paris"
     }
   ],
-  "location": "United States",
+  "location": "Canada",
   "price_drops": [
-    55,
-    49
+    750,
+    675,
+    605
   ],
-  "price": 49,
-  "price_i": 49,
-  "price_updated_at": "2026-03-19T12:38:33.770Z",
+  "price": 605,
+  "price_i": 605,
+  "price_updated_at": "2026-03-13T18:31:16.747Z",
   "size": "10",
   "strata": "grailed",
-  "title": "Diesel Exposure High-Top Canvas Sneakers",
+  "title": "Saint Laurent SLP SL/14H Studded Sneakers by Hedi Slimane",
   "user": {
-    "id": 11276130,
-    "username": "Evon655"
+    "id": 2421615,
+    "username": "nevernined"
   },
-  "objectID": "422295",
+  "objectID": "37",
   "_highlightResult": {
     "category_path": {
       "value": "footwear.hitop_sneakers",
@@ -1127,7 +394,7 @@
     "designers": [
       {
         "name": {
-          "value": "Diesel",
+          "value": "Saint Laurent Paris",
           "matchLevel": "none",
           "matchedWords": []
         }
@@ -1139,13 +406,13 @@
       "matchedWords": []
     },
     "title": {
-      "value": "Diesel Exposure High-Top Canvas Sneakers",
+      "value": "Saint Laurent SLP SL/14H Studded Sneakers by Hedi Slimane",
       "matchLevel": "none",
       "matchedWords": []
     },
     "user": {
       "username": {
-        "value": "Evon655",
+        "value": "nevernined",
         "matchLevel": "none",
         "matchedWords": []
       }
@@ -1155,7 +422,321 @@
     "nbTypos": 0,
     "firstMatchedWord": 0,
     "proximityDistance": 0,
-    "userScore": 8,
+    "userScore": 18,
+    "geoDistance": 0,
+    "geoPrecision": 1,
+    "nbExactWords": 0,
+    "words": 0,
+    "filters": 1
+  }
+},
+{
+  "id": 91582404,
+  "collectible_id": 91582404,
+  "rank": 41,
+  "badges": [],
+  "category": "outerwear",
+  "category_path": "outerwear.leather_jackets",
+  "category_size": "outerwear.m",
+  "color": "brown",
+  "condition": "is_gently_used",
+  "cover_photo": {
+    "id": 673965594,
+    "listing_id": 91582404,
+    "image": null,
+    "created_at": "2026-01-27T23:44:18.156Z",
+    "updated_at": "2026-01-27T23:44:18.219Z",
+    "photoable_id": 91582404,
+    "photoable_type": "Listing",
+    "width": null,
+    "height": null,
+    "url": "https://media-assets.grailed.com/prd/listing/temp/07a4b95aa73947b081c065fa4a0d6299",
+    "position": 0,
+    "rotate": 0,
+    "image_url": "https://media-assets.grailed.com/prd/listing/temp/07a4b95aa73947b081c065fa4a0d6299",
+    "deleted_at": null
+  },
+  "created_at": "2026-01-28T00:19:25.954Z",
+  "department": "menswear",
+  "designer_names": "Maison Margiela",
+  "designers": [
+    {
+      "id": 2308,
+      "name": "Maison Margiela"
+    }
+  ],
+  "location": "United States",
+  "price_drops": [],
+  "price": 2500,
+  "price_i": 2500,
+  "price_updated_at": "2026-01-28T00:19:25.954Z",
+  "size": "m",
+  "strata": "grailed",
+  "title": "Maison Margiela AW12 Belt Jacket",
+  "user": {
+    "id": 3848459,
+    "username": "IssaNKS"
+  },
+  "objectID": "41",
+  "_highlightResult": {
+    "category_path": {
+      "value": "outerwear.leather_jackets",
+      "matchLevel": "none",
+      "matchedWords": []
+    },
+    "color": {
+      "value": "brown",
+      "matchLevel": "none",
+      "matchedWords": []
+    },
+    "department": {
+      "value": "menswear",
+      "matchLevel": "none",
+      "matchedWords": []
+    },
+    "designers": [
+      {
+        "name": {
+          "value": "Maison Margiela",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    ],
+    "size": {
+      "value": "m",
+      "matchLevel": "none",
+      "matchedWords": []
+    },
+    "title": {
+      "value": "Maison Margiela AW12 Belt Jacket",
+      "matchLevel": "none",
+      "matchedWords": []
+    },
+    "user": {
+      "username": {
+        "value": "IssaNKS",
+        "matchLevel": "none",
+        "matchedWords": []
+      }
+    }
+  },
+  "_rankingInfo": {
+    "nbTypos": 0,
+    "firstMatchedWord": 0,
+    "proximityDistance": 0,
+    "userScore": 15,
+    "geoDistance": 0,
+    "geoPrecision": 1,
+    "nbExactWords": 0,
+    "words": 0,
+    "filters": 1
+  }
+},
+{
+  "id": 92214743,
+  "collectible_id": 92214743,
+  "rank": 46,
+  "badges": [],
+  "category": "tops",
+  "category_path": "tops.short_sleeve_shirts",
+  "category_size": "tops.m",
+  "color": "black",
+  "condition": "is_used",
+  "cover_photo": {
+    "id": 679035851,
+    "listing_id": 92214743,
+    "image": null,
+    "created_at": "2026-02-09T18:02:04.166Z",
+    "updated_at": "2026-02-09T18:02:04.212Z",
+    "photoable_id": 92214743,
+    "photoable_type": "Listing",
+    "width": 2625,
+    "height": 3500,
+    "url": "https://media-assets.grailed.com/prd/listing/temp/0380e754563248bb8bd0095f14f0e75b",
+    "position": 0,
+    "rotate": 0,
+    "image_url": "https://media-assets.grailed.com/prd/listing/temp/0380e754563248bb8bd0095f14f0e75b",
+    "deleted_at": null
+  },
+  "created_at": "2026-02-09T18:02:12.494Z",
+  "department": "menswear",
+  "designer_names": "Saint Laurent Paris",
+  "designers": [
+    {
+      "id": 1621,
+      "name": "Saint Laurent Paris"
+    }
+  ],
+  "location": "United States",
+  "price_drops": [],
+  "price": 225,
+  "price_i": 225,
+  "price_updated_at": "2026-03-04T17:48:24.711Z",
+  "size": "m",
+  "strata": "grailed",
+  "title": "Saint Laurent Paris No Smoking T-Shirt",
+  "user": {
+    "id": 3880514,
+    "username": "tomorrowisrain"
+  },
+  "objectID": "46",
+  "_highlightResult": {
+    "category_path": {
+      "value": "tops.short_sleeve_shirts",
+      "matchLevel": "none",
+      "matchedWords": []
+    },
+    "color": {
+      "value": "black",
+      "matchLevel": "none",
+      "matchedWords": []
+    },
+    "department": {
+      "value": "menswear",
+      "matchLevel": "none",
+      "matchedWords": []
+    },
+    "designers": [
+      {
+        "name": {
+          "value": "Saint Laurent Paris",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    ],
+    "size": {
+      "value": "m",
+      "matchLevel": "none",
+      "matchedWords": []
+    },
+    "title": {
+      "value": "Saint Laurent Paris No Smoking T-Shirt",
+      "matchLevel": "none",
+      "matchedWords": []
+    },
+    "user": {
+      "username": {
+        "value": "tomorrowisrain",
+        "matchLevel": "none",
+        "matchedWords": []
+      }
+    }
+  },
+  "_rankingInfo": {
+    "nbTypos": 0,
+    "firstMatchedWord": 0,
+    "proximityDistance": 0,
+    "userScore": 10,
+    "geoDistance": 0,
+    "geoPrecision": 1,
+    "nbExactWords": 0,
+    "words": 0,
+    "filters": 1
+  }
+},
+{
+  "id": 92819726,
+  "collectible_id": 92819726,
+  "rank": 45,
+  "badges": [],
+  "category": "footwear",
+  "category_path": "footwear.hitop_sneakers",
+  "category_size": "footwear.9",
+  "color": "black",
+  "condition": "is_gently_used",
+  "cover_photo": {
+    "id": 683894216,
+    "listing_id": 92819726,
+    "image": null,
+    "created_at": "2026-02-23T00:00:34.708Z",
+    "updated_at": "2026-02-23T00:00:34.770Z",
+    "photoable_id": 92819726,
+    "photoable_type": "Listing",
+    "width": null,
+    "height": null,
+    "url": "https://media-assets.grailed.com/prd/listing/temp/52ce671d86b8493ba158ca77657702f6",
+    "position": 0,
+    "rotate": 0,
+    "image_url": "https://media-assets.grailed.com/prd/listing/temp/52ce671d86b8493ba158ca77657702f6",
+    "deleted_at": null
+  },
+  "created_at": "2026-02-23T03:49:43.379Z",
+  "department": "menswear",
+  "designer_names": "Givenchy",
+  "designers": [
+    {
+      "id": 4,
+      "name": "Givenchy"
+    }
+  ],
+  "location": "United States",
+  "price_drops": [
+    350,
+    315,
+    283,
+    254
+  ],
+  "price": 254,
+  "price_i": 254,
+  "price_updated_at": "2026-03-30T18:46:53.096Z",
+  "size": "9",
+  "strata": "grailed",
+  "title": "Givenchy tyson floral hi-tops",
+  "user": {
+    "id": 16537066,
+    "username": "barryb234"
+  },
+  "objectID": "45",
+  "_highlightResult": {
+    "category_path": {
+      "value": "footwear.hitop_sneakers",
+      "matchLevel": "none",
+      "matchedWords": []
+    },
+    "color": {
+      "value": "black",
+      "matchLevel": "none",
+      "matchedWords": []
+    },
+    "department": {
+      "value": "menswear",
+      "matchLevel": "none",
+      "matchedWords": []
+    },
+    "designers": [
+      {
+        "name": {
+          "value": "Givenchy",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    ],
+    "size": {
+      "value": "9",
+      "matchLevel": "none",
+      "matchedWords": []
+    },
+    "title": {
+      "value": "Givenchy tyson floral hi-tops",
+      "matchLevel": "none",
+      "matchedWords": []
+    },
+    "user": {
+      "username": {
+        "value": "barryb234",
+        "matchLevel": "none",
+        "matchedWords": []
+      }
+    }
+  },
+  "_rankingInfo": {
+    "nbTypos": 0,
+    "firstMatchedWord": 0,
+    "proximityDistance": 0,
+    "userScore": 11,
     "geoDistance": 0,
     "geoPrecision": 1,
     "nbExactWords": 0,

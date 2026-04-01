@@ -1,3 +1,4 @@
+# RUN WHEN RAW DATA IS ADDED
 import json
 import os
 

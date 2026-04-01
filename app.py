@@ -9,19 +9,19 @@ app = Flask(__name__)
 
 # Load Data & AI Model (happens at start the script)
 print("Loading AI Model...")
-model = SentenceTransformer('all-MiniLM-L6-v2')
+model = SentenceTransformer('all-MiniLM-L6-v2') # runs localy on computer
 
 with open('datasetp1.json', 'r') as f:
     products = json.load(f)
 
-#start chache logic
+#start chache logic (this is gonna save images you've seen to reduce memory + speed)
 cache_file = 'embeddings.pt'
 
-# Pre-calculate the "meaning" of the inventory
+# Pre-calculate the meaning of the inventory/description
 if os.path.exists(cache_file):
     print("Indexing products...")
     product_embeddings = torch.load(cache_file)
-else:
+else: #IF the data is new...
     print("First time index...")
     descriptions = [f"{p['productName']} {p['description']}" for p in products]
     product_embeddings = model.encode(descriptions, convert_to_tensor=True)
@@ -30,8 +30,8 @@ else:
     print("Index saved to embeddings.pt")
 
 @app.route('/')
-def index():
-    shuffled_products = list(products)
+def index(): 
+    shuffled_products = list(products) #randomizes iniral feed
     random.shuffle(shuffled_products)
 
     return render_template('home.html', products=shuffled_products)
@@ -44,11 +44,11 @@ def ai_search():
     if not query:
         return jsonify(products)
 
-    # Encode the query and compare to inventory
+    # Encode the query and compares to inventory
     query_embedding = model.encode(query, convert_to_tensor=True)
     cos_scores = util.cos_sim(query_embedding, product_embeddings)[0]
     
-    # Get the top 5 most relevant items
+    # Get the top 12 most relevant items
     top_results = torch.topk(cos_scores, k=min(12, len(products)))
     
     results = []
