@@ -2,26 +2,44 @@ import json
 import os
 
 def map_vestiaire(item):
+    # gets data:
+    brand = item.get("brand", {}).get("name", "Unknown")
+    name = item.get("name", "Unnamed")
+    raw_desc = item.get("description", "")
+    size = item.get("size", {}).get("label", "")
+
+    AIdescriptor = f"{brand} {name}. Size: {size}. {raw_desc}"
+
     return {
         "Shop": "vestiaire",
-        "brandName": item.get("brand", {}).get("name", "Unknown"),
-        "productName": item.get("name", "Unnamed"),
+        "brandName": brand,
+        "productName": name,
         "price": item.get("price", {}).get("cents", 0) / 100,
         "imageUrl": "https://images.vestiairecollective.com" + item.get("pictures", [""])[0],
         "productUrl": "https://es.vestiairecollective.com" + item.get("link", ""),
-        "description": item.get("description", ""),
-        "sizeLabel": item.get("size", {}).get("label", "")
+        "description": AIdescriptor,
+        "sizeLabel": size
     }
+
 def map_grailed(item):
+    #gets data:
+    brand = item.get("designer_names", "Unknown")
+    title = item.get("title", "Unnamed")
+    category = item.get("category_path", "").replace(".", " ") # 'hats.beanies' -> 'hats beanies'
+    condition = item.get("condition", "").replace("is_", "").replace("_", " ")
+    size = item.get("size", "N/A") 
+
+    AIdescriptor = f"{brand} {title} {category}. Condition: {condition}. Size: {size}"
+
     return {
         "Shop": "grailed",
-        "brandName": item.get("designer_names", "Unknown"),
-        "productName": item.get("title", "Unnamed"),
+        "brandName": brand,
+        "productName": title,
         "price": item.get("price", 0),
         "imageUrl": item.get("cover_photo", {}).get("image_url", ""),
         "productUrl": f"https://www.grailed.com/listings/{item.get('id')}",
-        "description": f"{item.get('category_path')} - {item.get('condition')}",
-        "sizeLabel": item.get("size", "N/A")
+        "description": AIdescriptor,
+        "sizeLabel": size
     }
 
 def transform_data(raw_item):
