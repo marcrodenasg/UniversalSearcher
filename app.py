@@ -2,21 +2,32 @@ from flask import Flask, render_template, request, jsonify
 import json
 import torch
 import random
+import os
 from sentence_transformers import SentenceTransformer, util
 
 app = Flask(__name__)
 
-# 1. Load Data & AI Model (This happens once when you start the script)
+# Load Data & AI Model (happens at start the script)
 print("Loading AI Model...")
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
 with open('datasetp1.json', 'r') as f:
     products = json.load(f)
 
-# 2. Pre-calculate the "meaning" of your inventory
-print("Indexing products...")
-descriptions = [f"{p['productName']} {p['description']}" for p in products]
-product_embeddings = model.encode(descriptions, convert_to_tensor=True)
+#start chache logic
+cache_file = 'embeddings.pt'
+
+# Pre-calculate the "meaning" of the inventory
+if os.path.exists(cache_file):
+    print("Indexing products...")
+    product_embeddings = torch.load(cache_file)
+else:
+    print("First time index...")
+    descriptions = [f"{p['productName']} {p['description']}" for p in products]
+    product_embeddings = model.encode(descriptions, convert_to_tensor=True)
+
+    torch.save(product_embeddings, cache_file)
+    print("Index saved to embeddings.pt")
 
 @app.route('/')
 def index():
@@ -40,8 +51,12 @@ def ai_search():
     # Get the top 5 most relevant items
     top_results = torch.topk(cos_scores, k=min(12, len(products)))
     
-    # Create a list of the matched products
-    results = [products[i] for i in top_results.indices]
+    results = []
+    for i, score in zip(top_results.indices, top_results.values): # how accurate it feels
+        p = products[int(i)].copy()
+        # Convert 0.0-1.0 score to a percentage
+        p['score'] = int(float(score) * 100) 
+        results.append(p)
     return jsonify(results)
 
 if __name__ == '__main__':

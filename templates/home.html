@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Vestiare Shop</title>
+    <title>The Bench | Archive</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -39,6 +40,7 @@
                     <div class="card">
                         <span class="shop-tag">${p.Shop}</span>
                         <img src="${p.imageUrl}" loading="lazy" onerror="this.onerror=null;this.src='https://via.placeholder.com/200?text=No+Image';">
+                        <p class="match-badge">${p.score}% Match</p>
                         <p><b style="color:red;">${p.brandName}</b></p>
                         <p><strong>${p.productName}</strong></p>
                         <p>$${p.price}</p>

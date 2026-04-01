@@ -25,3 +25,13 @@ brand { color: red; font-weight: bold; text-transform: uppercase; }
     margin-bottom: 10px;
     display: none;
 }
+
+.match-badge {
+    background: #eaffea;
+    color: #228b22;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: bold;
+    display: inline-block;
+}
