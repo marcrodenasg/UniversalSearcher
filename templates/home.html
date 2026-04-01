@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vestiare Shop</title>
+    <style>
+        body { font-family: monospace; background: #eee; padding: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+        .card { background: white; border: 1px solid #000; padding: 10px; font-size: 11px; }
+        img { width: 100%; height: 150px; object-fit: contain; background: #f9f9f9; }
+        input { width: 100%; padding: 10px; margin-bottom: 20px; border: 2px solid #000; font-family: monospace; }
+        .match-score { color: blue; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <input type="text" id="aiIn" placeholder="Search (e.g. 'white t-shirt')">
+    <div id="out" class="grid">
+        {% for p in products %}
+        <div class="card">
+            <img src="{{ p.imageUrl }}">
+            <p><strong>{{ p.productName }}</strong></p>
+            <p>${{ p.price }}</p>
+            <a href="{{ p.productUrl }}" target="_blank">LINK</a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        const i = document.getElementById('aiIn');
+        const o = document.getElementById('out');
+
+        i.onkeypress = async (e) => {
+            if (e.key === 'Enter') {
+                const res = await fetch('/search', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ query: i.value })
+                });
+                const data = await res.json();
+                o.innerHTML = data.map(p => `
+                    <div class="card">
+                        <img src="${p.imageUrl}">
+                        <p><strong>${p.productName}</strong></p>
+                        <p>$${p.price}</p>
+                        <a href="${p.productUrl}" target="_blank">LINK</a>
+                    </div>
+                `).join('');
+            }
+        };
+    </script>
+</body>
+</html>
