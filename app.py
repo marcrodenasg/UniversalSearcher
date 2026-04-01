@@ -152,7 +152,7 @@ def ai_search():
     ebay_results = get_ebay_results(query)
     print(f"eBay results received: {len(ebay_results)}")
 
-    combined_results = local_results + ebay_results #puts it together
+    combined_results = ebay_results + local_results #puts it together
     print(f"Total combined items: {len(combined_results)}")
     print("--- SEARCH END ---")
     return jsonify(combined_results)
