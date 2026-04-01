@@ -16,7 +16,7 @@ current_ebay_token = None
 
 # Load Data & AI Model (happens at start the script)
 print("Loading AI Model...")
-model = SentenceTransformer('all-MiniLM-L6-v2') # runs localy on computer
+model = SentenceTransformer('all-MiniLM-L6-v2', device='cpu') # runs localy on computer
 
 with open('datasetp1.json', 'r') as f:
     products = json.load(f)
@@ -138,7 +138,7 @@ def ai_search():
     cos_scores = util.cos_sim(query_embedding, product_embeddings)[0]
     
     # Get the top 12 most relevant items
-    top_results = torch.topk(cos_scores, k=min(12, len(products)))
+    top_results = torch.topk(cos_scores, k=min(10, len(products)))
     
     local_results = []
     for i, score in zip(top_results.indices, top_results.values): # how accurate it feels
@@ -153,6 +153,7 @@ def ai_search():
     print(f"eBay results received: {len(ebay_results)}")
 
     combined_results = local_results + ebay_results #puts it together
+    random.shuffle(combined_results)
     print(f"Total combined items: {len(combined_results)}")
     print("--- SEARCH END ---")
     return jsonify(combined_results)
