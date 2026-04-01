@@ -1637,5 +1637,115 @@
     "sizeLabel": "41 EU",
     "country": "US",
     "Shop": "vestiaire"
+  },
+  {
+    "Shop": "grailed",
+    "brandName": "Saint Laurent Paris",
+    "productName": "Saint Laurent \u201cSmoking Forever\u201d sneakers",
+    "price": 500,
+    "imageUrl": "https://media-assets.grailed.com/prd/listing/temp/da06134479b4496eb856f0b06f52aa99",
+    "productUrl": "https://www.grailed.com/listings/91969696",
+    "description": "footwear.hitop_sneakers - is_used",
+    "sizeLabel": "9.5"
+  },
+  {
+    "Shop": "grailed",
+    "brandName": "Maison Margiela",
+    "productName": "College Ring",
+    "price": 198,
+    "imageUrl": "https://media-assets.grailed.com/prd/listing/47447298/020fc175fb344e148f73ac6c8494ad05",
+    "productUrl": "https://www.grailed.com/listings/94134635",
+    "description": "accessories.jewelry_watches - is_gently_used",
+    "sizeLabel": "one size"
+  },
+  {
+    "Shop": "grailed",
+    "brandName": "D.A.R.E",
+    "productName": "Vintage Silk Road Positive experience graphic hoodie M white",
+    "price": 19,
+    "imageUrl": "https://media-assets.grailed.com/prd/listing/temp/771c72b555bd471aa9cc73dda8133d25",
+    "productUrl": "https://www.grailed.com/listings/92960840",
+    "description": "tops.sweatshirts_hoodies - is_new",
+    "sizeLabel": "m"
+  },
+  {
+    "Shop": "grailed",
+    "brandName": "Body Glove",
+    "productName": "Vintage Body Glove T-shirt art tee Surf Skate all over print",
+    "price": 55,
+    "imageUrl": "https://media-assets.grailed.com/prd/listing/temp/303cd39edc824e6b9dabe488f3535965",
+    "productUrl": "https://www.grailed.com/listings/93899691",
+    "description": "tops.short_sleeve_shirts - is_gently_used",
+    "sizeLabel": "m"
+  },
+  {
+    "Shop": "grailed",
+    "brandName": "Guess",
+    "productName": "Vintage 2000s Guess Black Leather Bag Y2K Metal Ring Handle",
+    "price": 81,
+    "imageUrl": "https://media-assets.grailed.com/prd/listing/temp/2b8077b7e5634982a8557bf0d1739db5",
+    "productUrl": "https://www.grailed.com/listings/92566791",
+    "description": "womens_bags_luggage.handle_bags - is_used",
+    "sizeLabel": "one size"
+  },
+  {
+    "Shop": "grailed",
+    "brandName": "Diesel",
+    "productName": "Diesel D Hammer Boots",
+    "price": 315,
+    "imageUrl": "https://media-assets.grailed.com/prd/listing/temp/3860f73a6adc41b484100ecca1a2cbbc",
+    "productUrl": "https://www.grailed.com/listings/87616355",
+    "description": "footwear.boots - is_new",
+    "sizeLabel": "10.5"
+  },
+  {
+    "Shop": "grailed",
+    "brandName": "Diesel",
+    "productName": "Abstract Pattern Diesel Arctic Glow Fleece Sweatshirt",
+    "price": 125,
+    "imageUrl": "https://media-assets.grailed.com/prd/listing/temp/584a32ffb5934e4db88033340d5d57ad",
+    "productUrl": "https://www.grailed.com/listings/92707861",
+    "description": "outerwear.light_jackets - is_gently_used",
+    "sizeLabel": "l"
+  },
+  {
+    "Shop": "grailed",
+    "brandName": "Diesel",
+    "productName": "Diesel D-Delirious-A coat trench",
+    "price": 400,
+    "imageUrl": "https://media-assets.grailed.com/prd/listing/temp/ab4ae77d74eb432eb97a684ae73998d3",
+    "productUrl": "https://www.grailed.com/listings/93626875",
+    "description": "outerwear.denim_jackets - is_gently_used",
+    "sizeLabel": "xxl"
+  },
+  {
+    "Shop": "grailed",
+    "brandName": "Diesel",
+    "productName": "Vintage Diesel Zathan Bootcut jeans size 34x31",
+    "price": 72,
+    "imageUrl": "https://media-assets.grailed.com/prd/listing/temp/409447ee24f148dc90453eee4c3de4c4",
+    "productUrl": "https://www.grailed.com/listings/89348949",
+    "description": "bottoms.denim - is_gently_used",
+    "sizeLabel": "34"
+  },
+  {
+    "Shop": "grailed",
+    "brandName": "Diesel",
+    "productName": "Japan Dolce Gabbana Vibe Ribbed Knit Sweater LGB Style",
+    "price": 54,
+    "imageUrl": "https://media-assets.grailed.com/prd/listing/temp/ba550de28ac14c4da5a1eed132d85f3e",
+    "productUrl": "https://www.grailed.com/listings/93487082",
+    "description": "tops.sweaters_knitwear - is_gently_used",
+    "sizeLabel": "l"
+  },
+  {
+    "Shop": "grailed",
+    "brandName": "Diesel",
+    "productName": "Diesel Exposure High-Top Canvas Sneakers",
+    "price": 49,
+    "imageUrl": "https://media-assets.grailed.com/prd/listing/temp/bab506b1971347b6b16b7cbd3a26c8d5",
+    "productUrl": "https://www.grailed.com/listings/93688796",
+    "description": "footwear.hitop_sneakers - is_used",
+    "sizeLabel": "10"
   }
 ]

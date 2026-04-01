@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import json
 import torch
+import random
 from sentence_transformers import SentenceTransformer, util
 
 app = Flask(__name__)
@@ -19,7 +20,10 @@ product_embeddings = model.encode(descriptions, convert_to_tensor=True)
 
 @app.route('/')
 def index():
-    return render_template('home.html', products=products)
+    shuffled_products = list(products)
+    random.shuffle(shuffled_products)
+
+    return render_template('home.html', products=shuffled_products)
 
 @app.route('/search', methods=['POST'])
 def ai_search():

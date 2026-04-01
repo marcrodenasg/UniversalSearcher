@@ -1,60 +1,58 @@
 import json
 import os
 
-def transform_data(raw_item):
-    price_cents = raw_item.get("price", {}).get("cents", 0)
-    clean_price = price_cents / 100
-    base_img = "https://images.vestiairecollective.com"
-    base_site = "https://es.vestiairecollective.com"
-    pics = [base_img + p for p in raw_item.get("pictures", [])]
-    
+def map_vestiaire(item):
     return {
-        "Shop": "vestiaire",  # <-- New property added here
-        "brandName": raw_item.get("brand", {}).get("name", "Unknown"),
-        "colors": [c.get("name") for c in raw_item.get("colors", {}).get("all", [])],
-        "description": raw_item.get("description", ""),
-        "imageUrl": pics[0] if pics else "",
-        "imageUrls": pics,
-        "likes": raw_item.get("likes", 0),
-        "price": clean_price,
-        "priceCurrency": raw_item.get("price", {}).get("currency", "USD"),
-        "productName": raw_item.get("name", "Unnamed"),
-        "productUrl": base_site + raw_item.get("link", ""),
-        "sellerId": raw_item.get("seller", {}).get("id"),
-        "sellerName": raw_item.get("seller", {}).get("firstname"),
-        "sizeLabel": raw_item.get("size", {}).get("label", ""),
-        "country": raw_item.get("country", "US")
+        "Shop": "vestiaire",
+        "brandName": item.get("brand", {}).get("name", "Unknown"),
+        "productName": item.get("name", "Unnamed"),
+        "price": item.get("price", {}).get("cents", 0) / 100,
+        "imageUrl": "https://images.vestiairecollective.com" + item.get("pictures", [""])[0],
+        "productUrl": "https://es.vestiairecollective.com" + item.get("link", ""),
+        "description": item.get("description", ""),
+        "sizeLabel": item.get("size", {}).get("label", "")
+    }
+def map_grailed(item):
+    return {
+        "Shop": "grailed",
+        "brandName": item.get("designer_names", "Unknown"),
+        "productName": item.get("title", "Unnamed"),
+        "price": item.get("price", 0),
+        "imageUrl": item.get("cover_photo", {}).get("image_url", ""),
+        "productUrl": f"https://www.grailed.com/listings/{item.get('id')}",
+        "description": f"{item.get('category_path')} - {item.get('condition')}",
+        "sizeLabel": item.get("size", "N/A")
     }
 
-# 1. Load EXISTING data
-if os.path.exists('datasetp1.json'):
-    with open('datasetp1.json', 'r') as f:
-        existing_data = json.load(f)
-else:
-    existing_data = []
+def transform_data(raw_item):
+    if "strata" in raw_item:
+        return map_grailed(raw_item)
+    elif "price" in raw_item and "cents" in raw_item["price"]:
+        return map_vestiaire(raw_item)
+    else:
+        print("Warning: Unknown data format. Skipping item.")
+        return None
 
-# 2. Load NEW raw data
-try:
+def update_database():
+    if os.path.exists('datasetp1.json'):
+        with open('datasetp1.json', 'r') as f:
+            db = json.load(f)
+    else:
+        db = []
+
     with open('raw_data.json', 'r') as f:
-        new_raw_items = json.load(f)
-except (json.JSONDecodeError, FileNotFoundError):
-    print("raw_data.json is empty or missing. Skipping new additions.")
-    new_raw_items = []
+        new_raw = json.load(f)
+        if isinstance(new_raw, dict): new_raw = [new_raw]
 
-# 3. Add new items with the 'Shop' tag
-existing_urls = {item.get('productUrl') for item in existing_data}
-for raw_item in new_raw_items:
-    clean_item = transform_data(raw_item)
-    if clean_item['productUrl'] not in existing_urls:
-        existing_data.append(clean_item)
+    existing_urls = {item['productUrl'] for item in db}
+    
+    for raw in new_raw:
+        clean = transform_data(raw)
+        if clean and clean['productUrl'] not in existing_urls:
+            db.append(clean)
 
-# 4. FINAL CLEANUP: Ensure even OLD items have the 'Shop' property
-for item in existing_data:
-    if "Shop" not in item:
-        item["Shop"] = "vestiaire"
+    with open('datasetp1.json', 'w') as f:
+        json.dump(db, f, indent=2)
+    print(f"Sync complete. DB Size: {len(db)}")
 
-# 5. Save
-with open('datasetp1.json', 'w') as f:
-    json.dump(existing_data, f, indent=2)
-
-print(f"Success! Total items: {len(existing_data)}")
+update_database()
