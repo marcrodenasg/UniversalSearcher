@@ -34,7 +34,7 @@ def ai_search():
     cos_scores = util.cos_sim(query_embedding, product_embeddings)[0]
     
     # Get the top 5 most relevant items
-    top_results = torch.topk(cos_scores, k=min(5, len(products)))
+    top_results = torch.topk(cos_scores, k=min(12, len(products)))
     
     # Create a list of the matched products
     results = [products[i] for i in top_results.indices]
