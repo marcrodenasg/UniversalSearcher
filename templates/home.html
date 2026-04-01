@@ -10,7 +10,7 @@
         {% for p in products %}
         <div class="card">
             <span class="shop-tag">{{ p.Shop }}</span>
-            <img src="{{ p.imageUrl }}">
+            <img src="{{ p.imageUrl }}" loading="lazy" onerror="this.onerror=null;this.src='https://via.placeholder.com/200?text=No+Image';">
             <p><b style="color:red;">{{ p.brandName }}</b></p>
             <p><strong>{{ p.productName }}</strong></p>
             <p>${{ p.price }}</p>
@@ -38,7 +38,7 @@
                 o.innerHTML = data.map(p => `
                     <div class="card">
                         <span class="shop-tag">${p.Shop}</span>
-                        <img src="${p.imageUrl}">
+                        <img src="${p.imageUrl}" loading="lazy" onerror="this.onerror=null;this.src='https://via.placeholder.com/200?text=No+Image';">
                         <p><b style="color:red;">${p.brandName}</b></p>
                         <p><strong>${p.productName}</strong></p>
                         <p>$${p.price}</p>
