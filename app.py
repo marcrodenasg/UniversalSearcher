@@ -4,11 +4,13 @@ import torch
 import random
 import os
 from sentence_transformers import SentenceTransformer, util
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 
-EBAY_APP_ID = "MarcRode-FashionT-PRD-640c22372-7848f610"
-EBAY_CERT_ID = "PRD-40c223720375-4c93-4bbc-b4bc-b912"
+load_dotenv()
+EBAY_APP_ID = os.getenv("EBAY_APP_ID")
+EBAY_CERT_ID = os.getenv("EBAY_CERT_ID")
 
 current_ebay_token = None
 
