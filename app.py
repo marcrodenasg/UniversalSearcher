@@ -20,22 +20,15 @@ print("🔌 Connecting to fashion.db...")
 products = get_all_products()
 
 for p in products:
-    # Force the shop name to be 'Dotshop' for display
     current_shop = str(p.get('shop') or '').lower()
-    if current_shop == 'dotshop':
+    if 'dot' in current_shop or current_shop == '':
         p['shop'] = 'Dotshop'
+    elif 'ebay' in current_shop:
+        p['shop'] = 'eBay'
     
-    # Final check on image URLs
     img = p.get('imageUrl') or ""
     if img.startswith('//'):
         p['imageUrl'] = f"https:{img}"
-
-#DEBUG PRINT
-dotshop_count = len([p for p in products if str(p.get('shop') or '').lower() == 'dotshop'])
-print(f"📊 Total items: {len(products)} | Dotshop items: {dotshop_count}")
-
-if dotshop_count == 0:
-    print("WARNING: No Dotshop items found in the products list!")
 
 # Load Data & AI Model (happens at start the script)
 print("Loading AI Model...")
@@ -135,10 +128,10 @@ def get_ebay_results(query):
                 "productName": item.get('title'),
                 "brandName": "eBay Find",
                 "price": item.get('price', {}).get('value'),
-                "imageUrl": img_url,
+                "imageUrl": item.get('image', {}).get('imageUrl', 'https://via.placeholder.com/300'),
                 "productUrl": item.get('itemWebUrl'),
-                "Shop": "ebay",
-                "score": "LIVE"
+                "shop": "ebay",
+                "score": 85.0  # Make sure this is a number, not "85"
             })
             
         return translated
@@ -159,56 +152,64 @@ def ai_search():
     print("--- SEARCH START ---")
     data = request.get_json()
     query = data.get('query', '').strip()
-    
-    if not query:
-        return jsonify(products[:50]) #only return a slice
+    if not query: return jsonify(products[:50])
 
-    # Encode the query and compares to inventory
+    # 1. AI Vector Search (Database)
     query_embedding = model.encode(query, convert_to_tensor=True)
     cos_scores = util.cos_sim(query_embedding, product_embeddings)[0]
-
-    top_k = min(30, len(products))
-    top_results = torch.topk(cos_scores, k=top_k)
+    top_results = torch.topk(cos_scores, k=min(40, len(products)))
 
     scored_results = []
-    query_words = query.lower().split()
+    detected_keywords = []
+    query_lower = query.lower()
 
-    for i, ai_score in zip(top_results.indices, top_results.values):
+    for i in top_results.indices:
         p = products[int(i)].copy()
-        p['shop'] = p.get('shop') or p.get('Shop') or 'Archive'
-        p['imageUrl'] = p.get('imageUrl') or p.get('image_url') or ''
-        final_score = float(ai_score)
+        
+        # Keyword Extraction logic (skip 'none', 'new in', and words already in query)
+        brand = str(p.get('brandName', '')).strip()
+        cat = str(p.get('category', '')).strip()
+        for word in [brand, cat]:
+            w_low = word.lower()
+            if w_low and w_low not in ['none', 'new in', 'null'] and w_low not in query_lower:
+                if word not in detected_keywords:
+                    detected_keywords.append(word)
 
-        p_name = p.get('productName') or ""
-        p_brand = p.get('brandName') or ""
+        # 15% Keyword Boost
+        ai_score = float(cos_scores[int(i)])
+        match_count = sum(1 for w in query_lower.split() if w in p['productName'].lower())
+        final_score = (ai_score + (0.15 * match_count)) * 100
         
-        name_lower = p_name.lower()
-        brand_lower = p_brand.lower()
-        
-        match_count = 0
-        for word in query_words:
-            if word in name_lower or word in brand_lower:
-                match_count += 1
-        
-        # Apply a 15% boost for every keyword matched
-        if match_count > 0:
-            final_score += (0.15 * match_count)
-
-        p['score'] = int(min(final_score * 100, 100))
+        p['score'] = float(min(final_score, 100))
         scored_results.append(p)
-    
-    scored_results = sorted(scored_results, key=lambda x: x['score'], reverse=True)
 
-    # eBay blend
-    print(f"Calling eBay for: {query}")
-    ebay_results = get_ebay_results(query)
-    for item in ebay_results:
-        item['score'] = 85
+    # 2. Smart eBay Query Construction
+    # Only expand if search is short (vibe) and keywords were found
+    if len(query.split()) < 3 and detected_keywords:
+        ebay_query = f"{query} {detected_keywords[0]}"
+    else:
+        ebay_query = query
 
-    combined_results = ebay_results + scored_results
-    combined_results = sorted(combined_results, key=lambda x: x.get('score', 0), reverse=True)
+    print(f"Targeted Search: {ebay_query}")
+    ebay_results = get_ebay_results(ebay_query)
+
+    # 3. Fallback: If targeted search was empty, try original query
+    if not ebay_results and ebay_query != query:
+        print(f"Targeted search failed. Trying original query: {query}")
+        ebay_results = get_ebay_results(query)
+
+    # 4. Final Blend & Sort
+    combined = ebay_results + scored_results
+
+    # Use a safe float-conversion key to avoid TypeError
+    def sort_key(x):
+        try: return float(x.get('score', 0))
+        except: return 0.0
+
+    combined = sorted(combined, key=sort_key, reverse=True)
     
-    return jsonify(combined_results[:40])
+    print(f"Returning {len(combined)} blended results.")
+    return jsonify(combined[:40])
 
 
 if __name__ == '__main__':
