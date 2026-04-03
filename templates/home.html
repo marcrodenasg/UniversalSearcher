@@ -3,28 +3,23 @@
 <head>
     <title>The Bench | Archive</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
 </head>
 <body>
     <input type="text" id="aiIn" placeholder="Search (e.g. 'white t-shirt')">
     
     <div id="out" class="grid">
         {% for p in products %}
-    {# If the shop is already set to something (like Vestiaire/Grailed/Dot Shop), use it. 
-       If it's missing or says 'ebay', label it 'eBay' #}
-    {% set display_label = p.shop if p.shop and p.shop|lower != 'ebay' else 'eBay' %}
-    {# Special case: if your DB fix worked, Dot Shop is already there. 
-       We just need to make sure eBay items (which have no 'shop' key in the API) get labeled. #}
-    {% if not p.shop %}{% set display_label = 'eBay' %}{% endif %}
-
-    <div class="card" data-shop="{{ display_label|lower|replace(' ', '') }}">
-        <span class="shop-tag">{{ display_label }}</span>
-        <img src="{{ p.imageUrl }}" onerror="this.src='https://via.placeholder.com/200?text=No+Image';">
-        <span class="brand">{{ p.brandName }}</span>
-        <span class="product-name">{{ p.productName }}</span>
-        <p>${{ p.price }}</p>
-        <a href="{{ p.productUrl }}" target="_blank">LINK</a>
-    </div>
-{% endfor %}
+            {% set display_label = p.shop if p.shop and p.shop|lower != 'ebay' else 'eBay' %}
+            <div class="card" data-shop="{{ display_label|lower|replace(' ', '') }}">
+                <span class="shop-tag">{{ display_label }}</span>
+                <img src="{{ p.imageUrl }}" onerror="this.src='https://via.placeholder.com/200?text=No+Image';">
+                <span class="brand">{{ p.brandName }}</span>
+                <span class="product-name">{{ p.productName }}</span>
+                <p>${{ p.price }}</p>
+                <a href="{{ p.productUrl }}" target="_blank">LINK</a>
+            </div>
+        {% endfor %}
     </div>
 
     <script>
@@ -33,26 +28,33 @@
 
         const fixUrl = (url) => {
             if (!url) return 'https://via.placeholder.com/200';
-            if (url.startsWith('//')) return 'https:' + url;
-            return url;
+            return url.startsWith('//') ? 'https:' + url : url;
         };
 
         i.onkeypress = async (e) => {
             if (e.key === 'Enter') {
+                const val = i.value.trim();
+
+                // --- NEW LOGIC: Empty search resets to randomized feed ---
+                if (val === "") {
+                    window.location.href = "/"; 
+                    return;
+                }
+
+                // Start search animation
                 o.style.opacity = "0.3";
+
                 const res = await fetch('/search', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ query: i.value })
+                    body: JSON.stringify({ query: val })
                 });
+                
                 const data = await res.json();
 
+                // Render the blended results
                 o.innerHTML = data.map(p => {
-                    // If the item comes from the eBay API, it usually won't have p.shop, 
-                    // or p.shop will be 'ebay'.
                     let label = p.shop || 'eBay'; 
-                    
-                    // Safety check to ensure eBay is always capitalized correctly
                     if (label.toLowerCase() === 'ebay') label = 'eBay';
 
                     return `
@@ -66,6 +68,7 @@
                         </div>
                     `;
                 }).join('');
+
                 o.style.opacity = "1";
             }
         };

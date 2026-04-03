@@ -95,7 +95,7 @@ def get_ebay_results(query):
         prod_token = MANUAL_TOKEN
     
     try:
-        search_url = f"https://api.ebay.com/buy/browse/v1/item_summary/search?q={query}&limit=10"
+        search_url = f"https://api.ebay.com/buy/browse/v1/item_summary/search?q={query}&limit=35"
         headers = {
             "Authorization": f"Bearer {prod_token}",
             "Content-Type": "application/json",
@@ -209,7 +209,7 @@ def ai_search():
     combined = sorted(combined, key=sort_key, reverse=True)
     
     print(f"Returning {len(combined)} blended results.")
-    return jsonify(combined[:40])
+    return jsonify(combined[:80])
 
 
 if __name__ == '__main__':
