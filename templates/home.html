@@ -2,33 +2,44 @@
 <html>
 <head>
     <title>The Bench | Archive</title>
-    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <input type="text" id="aiIn" placeholder="Search (e.g. 'white t-shirt')">
+    
     <div id="out" class="grid">
         {% for p in products %}
-        <div class="card">
-            <span class="shop-tag">{{ p.Shop }}</span>
-            <img src="{{ p.imageUrl }}" loading="lazy" onerror="this.onerror=null;this.src='https://via.placeholder.com/200?text=No+Image';">
-            <p><b style="color:red;">{{ p.brandName }}</b></p>
-            <p><strong>{{ p.productName }}</strong></p>
-            <p>${{ p.price }}</p>
-            <a href="{{ p.productUrl }}" target="_blank">LINK</a>
-        </div>
-        {% endfor %}
+    {# If the shop is already set to something (like Vestiaire/Grailed/Dot Shop), use it. 
+       If it's missing or says 'ebay', label it 'eBay' #}
+    {% set display_label = p.shop if p.shop and p.shop|lower != 'ebay' else 'eBay' %}
+    {# Special case: if your DB fix worked, Dot Shop is already there. 
+       We just need to make sure eBay items (which have no 'shop' key in the API) get labeled. #}
+    {% if not p.shop %}{% set display_label = 'eBay' %}{% endif %}
+
+    <div class="card" data-shop="{{ display_label|lower|replace(' ', '') }}">
+        <span class="shop-tag">{{ display_label }}</span>
+        <img src="{{ p.imageUrl }}" onerror="this.src='https://via.placeholder.com/200?text=No+Image';">
+        <span class="brand">{{ p.brandName }}</span>
+        <span class="product-name">{{ p.productName }}</span>
+        <p>${{ p.price }}</p>
+        <a href="{{ p.productUrl }}" target="_blank">LINK</a>
+    </div>
+{% endfor %}
     </div>
 
     <script>
         const i = document.getElementById('aiIn');
         const o = document.getElementById('out');
 
+        const fixUrl = (url) => {
+            if (!url) return 'https://via.placeholder.com/200';
+            if (url.startsWith('//')) return 'https:' + url;
+            return url;
+        };
+
         i.onkeypress = async (e) => {
             if (e.key === 'Enter') {
-                o.style.opacity = "0.3"; // visual animation
-                o.style.pointerEvents = "none"
-
+                o.style.opacity = "0.3";
                 const res = await fetch('/search', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
@@ -36,22 +47,26 @@
                 });
                 const data = await res.json();
 
-                o.innerHTML = data.map(p => `
-                    <div class="card">
-                        <span class="shop-tag">${p.Shop}</span>
-                        <img src="${p.imageUrl}" loading="lazy" onerror="this.onerror=null;this.src='https://via.placeholder.com/200?text=No+Image';">
-                        <p class="match-badge">${p.score}% Match</p>
-                        <p><b style="color:red;">${p.brandName}</b></p>
-                        <p><strong>${p.productName}</strong></p>
-                        <p>$${p.price}</p>
-                        <div class="links">
-                            <a href="${p.productUrl}" target="_blank" class="buy-btn">VIEW ON ${p.Shop.toUpperCase()}</a>
-                        </div>
-                    </div>
-                `).join('');
+                o.innerHTML = data.map(p => {
+                    // If the item comes from the eBay API, it usually won't have p.shop, 
+                    // or p.shop will be 'ebay'.
+                    let label = p.shop || 'eBay'; 
+                    
+                    // Safety check to ensure eBay is always capitalized correctly
+                    if (label.toLowerCase() === 'ebay') label = 'eBay';
 
+                    return `
+                        <div class="card" data-shop="${label.toLowerCase().replace(' ', '')}">
+                            <span class="shop-tag">${label}</span>
+                            <img src="${fixUrl(p.imageUrl)}" onerror="this.src='https://via.placeholder.com/200?text=No+Image';">
+                            <span class="brand">${p.brandName || ''}</span>
+                            <span class="product-name">${p.productName || ''}</span>
+                            <p>$${p.price || '0.00'}</p>
+                            <a href="${p.productUrl}" target="_blank">LINK</a>
+                        </div>
+                    `;
+                }).join('');
                 o.style.opacity = "1";
-                o.style.pointerEvents = "auto";
             }
         };
     </script>

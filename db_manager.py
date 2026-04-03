@@ -47,13 +47,10 @@ def update_db(items_dict):
     conn.close()
 
 def get_all_products():
-    """Fetches everything from the DB as a list of dictionaries for Flask."""
-    if not os.path.exists(DB_PATH):
-        return []
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect('fashion.db')
     conn.row_factory = sqlite3.Row 
     c = conn.cursor()
-    c.execute("SELECT * FROM products")
+    c.execute("SELECT * FROM products") # Make sure there is NO "WHERE" clause here
     rows = [dict(row) for row in c.fetchall()]
     conn.close()
     return rows

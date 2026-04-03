@@ -1,49 +1,68 @@
 body { font-family: monospace; background: #eee; padding: 20px; }
 
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
-
-.card { background: white; border: 1px solid #000; padding: 10px; font-size: 11px; }
-
-img { width: 100%; height: 150px; object-fit: contain; background: #f9f9f9; }
-
-input { width: 100%; padding: 10px; margin-bottom: 20px; border: 2px solid #000; font-family: monospace; }
-
-.shop-tag { 
-    background: #000; color: #fff; padding: 2px 5px; 
-    font-size: 9px; text-transform: uppercase; 
-    display: inline-block; margin-bottom: 5px;
+input { 
+    width: 100%; padding: 10px; margin-bottom: 20px; 
+    border: 2px solid #000; font-family: monospace; 
 }
 
-brand { color: red; font-weight: bold; text-transform: uppercase; }
+/* Change this section in your style.css */
+.grid {
+    display: grid;
+    /* This tells the browser to fit exactly 4 columns */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px;
+    padding: 20px;
+}
 
-#out { 
-    transition: opacity 0.3s ease; 
+/* Optional: Add a Media Query for Mobile 
+   So it doesn't try to squeeze 4 columns on a tiny phone screen */
+@media (max-width: 900px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
-.loading-text {
-    font-weight: bold;
-    color: blue;
-    margin-bottom: 10px;
-    display: none;
+
+@media (max-width: 500px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
 }
+
+.card { 
+    position: relative; /* The Anchor */
+    background: white; 
+    border: 1px solid #000; 
+    padding: 10px; 
+    font-size: 11px; 
+    overflow: hidden;
+}
+
+/* Ebay distinction */
+.card[data-shop="ebay"] { border-top: 3px solid #005310; transition: transform 0.2s; }
+.card[data-shop="ebay"]:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+
+.shop-tag {
+    position: absolute;
+    top: 5px; left: 5px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white; padding: 2px 6px;
+    font-size: 10px; font-weight: bold;
+    text-transform: uppercase; z-index: 10;
+}
+
+img { 
+    width: 100%; height: 150px; 
+    object-fit: contain; background: #f9f9f9; 
+    border-bottom: 1px solid #eee; margin-bottom: 5px;
+}
+
+.brand { color: red; font-weight: bold; text-transform: uppercase; display: block; }
+.product-name { font-weight: bold; display: block; margin: 4px 0; }
 
 .match-badge {
-    background: #eaffea;
-    color: #228b22;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 10px;
-    font-weight: bold;
-    display: inline-block;
+    background: #eaffea; color: #228b22;
+    padding: 2px 6px; border-radius: 4px;
+    font-size: 10px; font-weight: bold; margin-bottom: 5px;
 }
 
-/* Ebay distinction !*/
-
-.card[data-shop="ebay"] {
-    border-top: 3px solid #005310; /* A "Live" green accent */
-    transition: transform 0.2s;
-}
-
-.card[data-shop="ebay"]:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-}
+#out { transition: opacity 0.3s ease; }

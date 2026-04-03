@@ -16,15 +16,30 @@ EBAY_CERT_ID = os.getenv("EBAY_CERT_ID")
 
 current_ebay_token = None
 
-print("Fetching inventory from Database...")
+print("🔌 Connecting to fashion.db...")
 products = get_all_products()
+
+for p in products:
+    # Force the shop name to be 'Dotshop' for display
+    current_shop = str(p.get('shop') or '').lower()
+    if current_shop == 'dotshop':
+        p['shop'] = 'Dotshop'
+    
+    # Final check on image URLs
+    img = p.get('imageUrl') or ""
+    if img.startswith('//'):
+        p['imageUrl'] = f"https:{img}"
+
+#DEBUG PRINT
+dotshop_count = len([p for p in products if str(p.get('shop') or '').lower() == 'dotshop'])
+print(f"📊 Total items: {len(products)} | Dotshop items: {dotshop_count}")
+
+if dotshop_count == 0:
+    print("WARNING: No Dotshop items found in the products list!")
 
 # Load Data & AI Model (happens at start the script)
 print("Loading AI Model...")
 model = SentenceTransformer('multi-qa-mpnet-base-dot-v1', device='cpu') # runs localy on computer
-
-with open('datasetp1.json', 'r') as f:
-    products = json.load(f)
 
 #start chache logic (this is gonna save images you've seen to reduce memory + speed)
 cache_file = 'embeddings.pt'
@@ -64,7 +79,7 @@ def fetch_new_ebay_token():
     }
     data = {
         "grant_type": "client_credentials",
-        "scope": "https://api.ebay.com/oauth/api_scope/buy.browse.readonly"
+        "scope": "https://api.ebay.com/oauth/api_scope"
     }
     
     res = requests.post(url, headers=headers, data=data)
@@ -134,9 +149,9 @@ def get_ebay_results(query):
 
 @app.route('/')
 def index(): 
-    shuffled_products = list(products) #randomizes iniral feed
+    shuffled_products = list(products)
     random.shuffle(shuffled_products)
-
+    
     return render_template('home.html', products=shuffled_products)
 
 @app.route('/search', methods=['POST'])
@@ -160,10 +175,15 @@ def ai_search():
 
     for i, ai_score in zip(top_results.indices, top_results.values):
         p = products[int(i)].copy()
+        p['shop'] = p.get('shop') or p.get('Shop') or 'Archive'
+        p['imageUrl'] = p.get('imageUrl') or p.get('image_url') or ''
         final_score = float(ai_score)
 
-        name_lower = p['productName'].lower()
-        brand_lower = p['brandName'].lower()
+        p_name = p.get('productName') or ""
+        p_brand = p.get('brandName') or ""
+        
+        name_lower = p_name.lower()
+        brand_lower = p_brand.lower()
         
         match_count = 0
         for word in query_words:
@@ -179,12 +199,16 @@ def ai_search():
     
     scored_results = sorted(scored_results, key=lambda x: x['score'], reverse=True)
 
-        #live ebay results
+    # eBay blend
     print(f"Calling eBay for: {query}")
     ebay_results = get_ebay_results(query)
-    print(f"eBay results received: {len(ebay_results)}")
+    for item in ebay_results:
+        item['score'] = 85
+
+    combined_results = ebay_results + scored_results
+    combined_results = sorted(combined_results, key=lambda x: x.get('score', 0), reverse=True)
     
-    return jsonify(ebay_results + scored_results[:15])
+    return jsonify(combined_results[:40])
 
 
 if __name__ == '__main__':
