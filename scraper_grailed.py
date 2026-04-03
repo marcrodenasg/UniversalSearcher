@@ -2,6 +2,7 @@ import asyncio
 import json
 import os
 from playwright.async_api import async_playwright
+from db_manager import init_db, update_db
 
 # --- TARGET CATEGORIES ---
 CATEGORIES = [
@@ -13,8 +14,6 @@ CATEGORIES = [
     "https://www.grailed.com/categories/streetwear"
 ]
 
-CLEAN_DB = "datasetp1.json"
-
 async def run_updater_scraper():
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=False)
@@ -23,7 +22,6 @@ async def run_updater_scraper():
         )
         page = await context.new_page()
 
-        # This will hold only the new items found in THIS specific run
         new_session_items = {}
 
         # --- THE NETWORK INTERCEPTOR ---
@@ -42,13 +40,13 @@ async def run_updater_scraper():
                         for item in hits:
                             p_id = str(item.get("id"))
                             if p_id:
-                                # We map the data to your DB format
-                                new_session_items[f"https://www.grailed.com/listings/{p_id}"] = {
+                                listing_url = f"https://www.grailed.com/listings/{p_id}"
+                                new_session_items[listing_url] = {
                                     "productName": item.get("title"),
                                     "brandName": item.get("designer_names"),
                                     "price": item.get("price"),
                                     "imageUrl": item.get("cover_photo", {}).get("url"),
-                                    "productUrl": f"https://www.grailed.com/listings/{p_id}",
+                                    "productUrl": listing_url,
                                     "Shop": "Grailed",
                                     "category": item.get("category_path", "General")
                                 }
@@ -65,50 +63,19 @@ async def run_updater_scraper():
             try:
                 await page.goto(url, wait_until="domcontentloaded", timeout=45000)
                 await asyncio.sleep(5)
-                # Scroll to get more depth per category
                 await page.mouse.wheel(0, 3000)
                 await asyncio.sleep(4)
             except Exception as e:
                 print(f"⚠️ Skip {url}: {e}")
 
-        # --- THE SMART MERGE ---
-        print("\n💾 Merging new data into database...")
-        
-        # 1. Load the existing items from your JSON file
-        master_db = {}
-        if os.path.exists(CLEAN_DB):
-            try:
-                with open(CLEAN_DB, 'r') as f:
-                    old_list = json.load(f)
-                    # Use URL as key to ensure uniqueness
-                    master_db = {item['productUrl']: item for item in old_list}
-                    print(f"📁 Loaded {len(master_db)} existing items from {CLEAN_DB}")
-            except Exception as e:
-                print(f"⚠️ Could not read existing DB, starting fresh. ({e})")
-
-        # 2. Update master_db with the items from this session
-        added_count = 0
-        updated_count = 0
-        
-        for url, data in new_session_items.items():
-            if url in master_db:
-                # If price changed, update it
-                if master_db[url]['price'] != data['price']:
-                    master_db[url] = data
-                    updated_count += 1
-            else:
-                # Brand new item
-                master_db[url] = data
-                added_count += 1
-
-        # 3. Save the final merged list back to the file
-        with open(CLEAN_DB, 'w') as f:
-            json.dump(list(master_db.values()), f, indent=4)
-        
-        print(f"✅ UPDATE COMPLETE.")
-        print(f"✨ New items added: {added_count}")
-        print(f"🔄 Prices/Info updated: {updated_count}")
-        print(f"📊 Total items in DB: {len(master_db)}")
+        # --- THE SQL SYNC ---
+        if new_session_items:
+            print(f"\n💾 Syncing {len(new_session_items)} items to fashion.db...")
+            init_db() # Ensure table exists
+            update_db(new_session_items)
+            print("✅ Database sync complete.")
+        else:
+            print("❌ No items found this session.")
 
         await browser.close()
 

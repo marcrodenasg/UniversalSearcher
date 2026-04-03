@@ -6,6 +6,8 @@ import os
 from sentence_transformers import SentenceTransformer, util
 from dotenv import load_dotenv
 
+from db_manager import get_all_products
+
 app = Flask(__name__)
 
 load_dotenv()
@@ -14,9 +16,12 @@ EBAY_CERT_ID = os.getenv("EBAY_CERT_ID")
 
 current_ebay_token = None
 
+print("Fetching inventory from Database...")
+products = get_all_products()
+
 # Load Data & AI Model (happens at start the script)
 print("Loading AI Model...")
-model = SentenceTransformer('all-MiniLM-L6-v2', device='cpu') # runs localy on computer
+model = SentenceTransformer('multi-qa-mpnet-base-dot-v1', device='cpu') # runs localy on computer
 
 with open('datasetp1.json', 'r') as f:
     products = json.load(f)
@@ -28,9 +33,19 @@ cache_file = 'embeddings.pt'
 if os.path.exists(cache_file):
     print("Indexing products...")
     product_embeddings = torch.load(cache_file, map_location=torch.device('cpu'))
+
+    if len(product_embeddings) != len(products):
+        print("🔄 Inventory changed! Re-indexing...")
+        descriptions = [
+            f"Item: {p['productName']} Brand: {p['brandName']} Category: {p['category']} Store: {p['shop']}" 
+            for p in products
+        ]
+        product_embeddings = model.encode(descriptions, convert_to_tensor=True)
+        torch.save(product_embeddings, cache_file)
+
 else: #IF the data is new...
     print("First time index...")
-    descriptions = [f"{p['productName']} {p['description']}" for p in products]
+    descriptions = [f"{p['productName']} {p.get('description', '')}" for p in products]
     product_embeddings = model.encode(descriptions, convert_to_tensor=True)
 
     torch.save(product_embeddings, cache_file)
@@ -128,7 +143,7 @@ def index():
 def ai_search():
     print("--- SEARCH START ---")
     data = request.get_json()
-    query = data.get('query', '')
+    query = data.get('query', '').strip()
     
     if not query:
         return jsonify(products[:50]) #only return a slice
@@ -136,26 +151,40 @@ def ai_search():
     # Encode the query and compares to inventory
     query_embedding = model.encode(query, convert_to_tensor=True)
     cos_scores = util.cos_sim(query_embedding, product_embeddings)[0]
-    
-    # Get the top 12 most relevant items
-    top_results = torch.topk(cos_scores, k=min(10, len(products)))
-    
-    local_results = []
-    for i, score in zip(top_results.indices, top_results.values): # how accurate it feels
+
+    top_k = min(30, len(products))
+    top_results = torch.topk(cos_scores, k=top_k)
+
+    scored_results = []
+    query_words = query.lower().split()
+
+    for i, ai_score in zip(top_results.indices, top_results.values):
         p = products[int(i)].copy()
-        # Convert 0.0-1.0 score to a percentage
-        p['score'] = int(float(score) * 100) 
-        local_results.append(p)
+        final_score = float(ai_score)
+
+        name_lower = p['productName'].lower()
+        brand_lower = p['brandName'].lower()
+        
+        match_count = 0
+        for word in query_words:
+            if word in name_lower or word in brand_lower:
+                match_count += 1
+        
+        # Apply a 15% boost for every keyword matched
+        if match_count > 0:
+            final_score += (0.15 * match_count)
+
+        p['score'] = int(min(final_score * 100, 100))
+        scored_results.append(p)
+    
+    scored_results = sorted(scored_results, key=lambda x: x['score'], reverse=True)
 
         #live ebay results
     print(f"Calling eBay for: {query}")
     ebay_results = get_ebay_results(query)
     print(f"eBay results received: {len(ebay_results)}")
-
-    combined_results = ebay_results + local_results #puts it together
-    print(f"Total combined items: {len(combined_results)}")
-    print("--- SEARCH END ---")
-    return jsonify(combined_results)
+    
+    return jsonify(ebay_results + scored_results[:15])
 
 
 if __name__ == '__main__':
