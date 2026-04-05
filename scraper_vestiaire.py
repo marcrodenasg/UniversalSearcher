@@ -65,13 +65,13 @@ async def run_vestiaire_scraper():
                 await page.mouse.wheel(0, 3000) # Scroll to trigger API
                 await asyncio.sleep(4)
             except Exception as e:
-                print(f"⚠️ Vestiaire Timeout: {e}")
+                print(f"Vestiaire Timeout: {e}")
 
         # --- SYNC TO SAME DB ---
         if new_items:
-            print(f"💾 Merging {len(new_items)} Vestiaire items into fashion.db...")
+            print(f"Merging {len(new_items)} Vestiaire items into fashion.db...")
             update_db(new_items)
-            print("✅ Database updated with Vestiaire stock!")
+            print("Database updated with Vestiaire stock!")
 
         await browser.close()
 

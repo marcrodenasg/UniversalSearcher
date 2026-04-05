@@ -56,21 +56,21 @@ async def run_dotshop_scraper():
                         else:
                             img_url = "https://via.placeholder.com/400?text=No+Image"
 
-                        # --- 💰 PRICE LOGIC ---
+                        # --- PRICE LOGIC ---
                         raw_price = item.get('price', 0)
                         try:
                             price = float(raw_price)
-                            # Shopify API often gives cents (e.g. 25000 for $250)
+                            # Shopify API often gives cents (ex: 25000 for $250)
                             if price > 5000: 
                                 price = price / 100
                         except:
                             price = 0
 
-                        # --- 📝 DESCRIPTION LOGIC ---
+                        # --- DESCRIPTION LOGIC ---
                         raw_desc = item.get('description', '') or item.get('body_html', '') or ""
                         clean_desc = re.sub('<[^<]+?>', '', raw_desc)
 
-                        # --- 💾 STORE DATA ---
+                        # --- STORE DATA ---
                         new_items[listing_url] = {
                             "productName": name,
                             "brandName": item.get('vendor') or item.get('brand', 'Dotshop'),
@@ -91,7 +91,7 @@ async def run_dotshop_scraper():
 
         # --- NAVIGATION LOOP ---
         for url in CATEGORIES:
-            print(f"📡 Browsing Dotshop: {url}")
+            print(f"Browsing Dotshop: {url}")
             try:
                 await page.goto(url, wait_until="domcontentloaded", timeout=60000)
                 # Scroll to trigger API calls
@@ -99,16 +99,16 @@ async def run_dotshop_scraper():
                     await page.evaluate("window.scrollBy(0, 800)")
                     await asyncio.sleep(1.5)
             except Exception as e:
-                print(f"⚠️ Error on {url}: {e}")
+                print(f"Error on {url}: {e}")
 
         # --- SYNC TO DATABASE ---
         if new_items:
-            print(f"💾 Merging {len(new_items)} Dotshop items into fashion.db...")
+            print(f"Merging {len(new_items)} Dotshop items into fashion.db...")
             init_db() 
             update_db(new_items)
-            print("✅ Dotshop sync complete!")
+            print("Dotshop sync complete!")
         else:
-            print("❌ No items intercepted.")
+            print("No items intercepted.")
 
         await browser.close()
 

@@ -3,32 +3,21 @@ import os
 
 DB_PATH = 'fashion.db'
 
-def init_db():
-    conn = sqlite3.connect(DB_PATH)
-    c = conn.cursor()
-    # Using productUrl as PRIMARY KEY automatically prevents duplicates
-    c.execute('''
-        CREATE TABLE IF NOT EXISTS products (
-            productUrl TEXT PRIMARY KEY, 
-            productName TEXT,
-            brandName TEXT,
-            price REAL,
-            imageUrl TEXT,
-            shop TEXT,
-            category TEXT
-        )
-    ''')
-    conn.commit()
-    conn.close()
-    print("✅ Database 'fashion.db' initialized!")
-
 def update_db(items_dict):
-    """Takes a dictionary of items and syncs them to the SQL database."""
     conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
     
-    # INSERT OR REPLACE: If the URL exists, it updates the price/info. If not, it adds it.
-    for url, item in items_dict.items():
+    for v_id, item in items_dict.items():
+        url = item.get('productUrl')
+        if not url: continue
+
+        # --- Ensure Price is a number, not a dictionary ---
+        price_raw = item.get('price')
+        if isinstance(price_raw, dict):
+            price = price_raw.get('amount') # Extract '25.00' from the dict
+        else:
+            price = price_raw
+
         c.execute('''
             INSERT OR REPLACE INTO products 
             (productUrl, productName, brandName, price, imageUrl, shop, category)
@@ -37,23 +26,22 @@ def update_db(items_dict):
             url, 
             item.get('productName'), 
             item.get('brandName'), 
-            item.get('price'), 
+            price, # Now a safe string/number
             item.get('imageUrl'), 
-            item.get('Shop'), 
+            item.get('shop'), 
             item.get('category')
         ))
     
     conn.commit()
     conn.close()
+    print(f"Successfully synced {len(items_dict)} items to {DB_PATH}")
 
 def get_all_products():
-    conn = sqlite3.connect('fashion.db')
-    conn.row_factory = sqlite3.Row 
+    """Fetches all items from the database for the AI to read."""
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row # This is CRITICAL for app.py to work
     c = conn.cursor()
-    c.execute("SELECT * FROM products") # Make sure there is NO "WHERE" clause here
+    c.execute("SELECT * FROM products")
     rows = [dict(row) for row in c.fetchall()]
     conn.close()
     return rows
-
-if __name__ == "__main__":
-    init_db()

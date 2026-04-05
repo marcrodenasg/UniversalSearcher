@@ -59,23 +59,23 @@ async def run_updater_scraper():
 
         # --- NAVIGATION LOOP ---
         for url in CATEGORIES:
-            print(f"\n📂 UPDATING CATEGORY: {url.split('/')[-1].upper()}")
+            print(f"\nUPDATING CATEGORY: {url.split('/')[-1].upper()}")
             try:
                 await page.goto(url, wait_until="domcontentloaded", timeout=45000)
                 await asyncio.sleep(5)
                 await page.mouse.wheel(0, 3000)
                 await asyncio.sleep(4)
             except Exception as e:
-                print(f"⚠️ Skip {url}: {e}")
+                print(f"Skip {url}: {e}")
 
         # --- THE SQL SYNC ---
         if new_session_items:
             print(f"\n💾 Syncing {len(new_session_items)} items to fashion.db...")
             init_db() # Ensure table exists
             update_db(new_session_items)
-            print("✅ Database sync complete.")
+            print("Database sync complete.")
         else:
-            print("❌ No items found this session.")
+            print("No items found this session.")
 
         await browser.close()
 

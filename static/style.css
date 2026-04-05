@@ -39,9 +39,12 @@ input {
     justify-content:空间-between;
 }
 
-/* Ebay distinction */
-.card[data-shop="ebay"] { border-top: 3px solid #005310; transition: transform 0.2s; }
-.card[data-shop="ebay"]:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+/* This covers lowercase and uppercase matches */
+.card[data-shop="vestiaire"] { border-top: 3px solid #333; }
+.card[data-shop="vestiaire"] .shop-tag { background: #000; color: #fff; }
+
+/* If the scraper saved it with a capital V */
+.card[data-shop="Vestiaire"] { border-top: 3px solid #333; }
 
 .shop-tag {
     position: absolute;

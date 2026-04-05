@@ -165,7 +165,23 @@ def ai_search():
 
     for i in top_results.indices:
         p = products[int(i)].copy()
+        p['productUrl'] = p.get('productUrl') or p.get('url') or p.get('link') or "#"
+
+        raw_url = p.get('productUrl') or p.get('url') or p.get('product_url') or "#"
+        raw_shop = str(p.get('shop') or 'Archive')
+        if 'vestiaire' in raw_shop:
+            p['shop'] = 'vestiaire'
+        elif 'vinted' in raw_shop:
+            p['shop'] = 'vinted'
+        elif 'dot' in raw_shop:
+            p['shop'] = 'dotshop'
+        else:
+            p['shop'] = raw_shop
         
+        p['display_link'] = raw_url
+        p['display_label'] = f"VIEW ON {raw_shop.upper()}"
+        p['shop_class'] = raw_shop.lower().replace(" ", "")
+
         # Keyword Extraction logic (skip 'none', 'new in', and words already in query)
         brand = str(p.get('brandName', '')).strip()
         cat = str(p.get('category', '')).strip()
@@ -207,6 +223,8 @@ def ai_search():
         except: return 0.0
 
     combined = sorted(combined, key=sort_key, reverse=True)
+
+    scored_results.append(p)
     
     print(f"Returning {len(combined)} blended results.")
     return jsonify(combined[:80])
