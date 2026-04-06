@@ -11,7 +11,8 @@ CATEGORIES = [
     "https://www.grailed.com/categories/womenswear/blouses",
     "https://www.grailed.com/categories/footwear",
     "https://www.grailed.com/categories/outerwear",
-    "https://www.grailed.com/categories/streetwear"
+    "https://www.grailed.com/categories/streetwear",
+    "https://www.grailed.com/collections/trending-hoodies"
 ]
 
 async def run_updater_scraper():
@@ -39,6 +40,14 @@ async def run_updater_scraper():
 
                         for item in hits:
                             p_id = str(item.get("id"))
+                            if not p_id: continue
+                        
+                        designers = item.get("designer_names", [])
+                        brand = designers[0] if isinstance(designers, list) and designers else "Vintage"
+                            
+
+                        for item in hits:
+                            p_id = str(item.get("id"))
                             if p_id:
                                 listing_url = f"https://www.grailed.com/listings/{p_id}"
                                 new_session_items[listing_url] = {
@@ -47,11 +56,11 @@ async def run_updater_scraper():
                                     "price": item.get("price"),
                                     "imageUrl": item.get("cover_photo", {}).get("url"),
                                     "productUrl": listing_url,
-                                    "Shop": "Grailed",
+                                    "shop": "Grailed",
                                     "category": item.get("category_path", "General")
                                 }
                         if hits:
-                            print(f"🎯 Intercepted {len(hits)} items...")
+                            print(f"Intercepted {len(hits)} items...")
                     except:
                         pass
 

@@ -67,7 +67,7 @@ async def run_dotshop_scraper():
                         }
                     
                     if items_list:
-                        print(f"🎯 Dotshop: Successfully mapped {len(items_list)} items from results.")
+                        print(f"Dotshop: Successfully mapped {len(items_list)} items from results.")
                 except Exception as e:
                     # Silence JSON errors from non-json responses
                     pass
