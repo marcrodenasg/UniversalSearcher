@@ -1,5 +1,6 @@
 import sqlite3
 import os
+import re
 
 DB_PATH = 'fashion.db'
 
@@ -48,3 +49,20 @@ def get_all_products():
     rows = [dict(row) for row in c.fetchall()]
     conn.close()
     return rows
+
+def init_db():
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS products (
+            productUrl TEXT PRIMARY KEY, 
+            productName TEXT,
+            brandName TEXT,
+            price REAL,
+            imageUrl TEXT,
+            shop TEXT,
+            category TEXT
+        )
+    ''')
+    conn.commit()
+    conn.close()

@@ -25,66 +25,51 @@ async def run_dotshop_scraper():
 
         async def handle_response(response):
             url = response.url.lower()
-            if any(k in url for k in ["products", "collection", "search", "algolia"]):
+            if "category.json" in url or "products" in url or "search" in url:
                 try:
                     data = await response.json()
-                    products = []
-                    if isinstance(data, dict):
-                        products = data.get('products', []) or data.get('results', []) or data.get('hits', [])
                     
-                    for item in products:
-                        name = item.get('title') or item.get('name')
-                        if not name:
+                    # Based on your screenshot, the items are in 'results'
+                    items_list = data.get('results', [])
+                    
+                    for item in items_list:
+                        # Exact keys from your screenshot
+                        name = item.get('name')
+                        brand = item.get('brand') or "Dotshop"
+                        brand_slug = item.get('brand_slug') or "brand"
+                        
+                        # We use 'id' to create a unique key for the dictionary
+                        v_id = str(item.get('id'))
+                        
+                        if not name or not v_id:
                             continue
+
+                        # --- CONSTRUCT THE PERFECT LINK ---
+                        # We use the 'brand_slug' and 'name' logic here
+                        def slugify_simple(text):
+                            return re.sub(r'[\s_-]+', '-', str(text).lower().strip())
+
+                        name_slug = slugify_simple(name)
+                        listing_url = f"https://www.dotshop.ai/product/DOTSHOP/{brand_slug}/{name_slug}"
                         
-                        p_id = str(item.get('id') or item.get('objectID'))
-                        handle = item.get('handle') or p_id
-                        listing_url = f"https://www.dotshop.ai/products/{handle}"
-                        
-                        # --- IMAGE LOGIC ---
-                        img_url = item.get('imageUrl') or item.get('image_url') or ""
-                        
-                        if isinstance(img_url, list) and len(img_url) > 0:
-                            img_url = img_url[0]
-                        if isinstance(img_url, dict):
-                            img_url = img_url.get('url') or img_url.get('src')
+                        # --- CAPTURE THE REST ---
+                        img_url = item.get('imageUrl')
+                        price = item.get('price') or item.get('msrp')
 
-                        if img_url:
-                            # Just in case it's missing the protocol
-                            if img_url.startswith('//'):
-                                img_url = f"https:{img_url}"
-                        else:
-                            img_url = "https://via.placeholder.com/400?text=No+Image"
-
-                        # --- PRICE LOGIC ---
-                        raw_price = item.get('price', 0)
-                        try:
-                            price = float(raw_price)
-                            # Shopify API often gives cents (ex: 25000 for $250)
-                            if price > 5000: 
-                                price = price / 100
-                        except:
-                            price = 0
-
-                        # --- DESCRIPTION LOGIC ---
-                        raw_desc = item.get('description', '') or item.get('body_html', '') or ""
-                        clean_desc = re.sub('<[^<]+?>', '', raw_desc)
-
-                        # --- STORE DATA ---
                         new_items[listing_url] = {
                             "productName": name,
-                            "brandName": item.get('vendor') or item.get('brand', 'Dotshop'),
-                            "price": round(price, 2),
+                            "brandName": brand,
+                            "price": price,
                             "imageUrl": img_url,
                             "productUrl": listing_url,
                             "shop": "Dotshop",
-                            "category": "New In",
-                            "description": clean_desc[:500]
+                            "category": "New In"
                         }
                     
-                    if products:
-                        print(f"🎯 Dotshop: Caught {len(products)} potential items...")
-                except:
+                    if items_list:
+                        print(f"🎯 Dotshop: Successfully mapped {len(items_list)} items from results.")
+                except Exception as e:
+                    # Silence JSON errors from non-json responses
                     pass
 
         page.on("response", handle_response)
