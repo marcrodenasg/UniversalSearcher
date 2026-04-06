@@ -8,15 +8,18 @@ def update_db(items_dict):
     c = conn.cursor()
     
     for v_id, item in items_dict.items():
-        url = item.get('productUrl')
-        if not url: continue
+        url = item.get('productUrl') or item.get('url') or item.get('link') or item.get('product_url')
+
+        if not url:
+            print(f"Skipping item {item.get('productName')} - No URL found!")
+            continue
+
+        if url.startswith('/'):
+            url = f"https://www.vinted.com{url}"
 
         # --- Ensure Price is a number, not a dictionary ---
         price_raw = item.get('price')
-        if isinstance(price_raw, dict):
-            price = price_raw.get('amount') # Extract '25.00' from the dict
-        else:
-            price = price_raw
+        price = price_raw.get('amount') if isinstance(price_raw, dict) else price_raw
 
         c.execute('''
             INSERT OR REPLACE INTO products 
@@ -26,7 +29,7 @@ def update_db(items_dict):
             url, 
             item.get('productName'), 
             item.get('brandName'), 
-            price, # Now a safe string/number
+            price, 
             item.get('imageUrl'), 
             item.get('shop'), 
             item.get('category')

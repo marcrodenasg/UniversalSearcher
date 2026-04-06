@@ -13,11 +13,11 @@
             {% set display_label = p.shop if p.shop and p.shop|lower != 'ebay' else 'eBay' %}
             <div class="card" data-shop="{{ display_label|lower|replace(' ', '') }}">
                 <span class="shop-tag">{{ display_label }}</span>
-                <img src="{{ p.imageUrl }}" onerror="this.src='https://via.placeholder.com/200?text=No+Image';">
+                <img src="{{ p.imageUrl }}" referrerpolicy="no-referrer" onerror="this.src='https://ui-avatars.com/api/?name=No+Image';">
                 <span class="brand">{{ p.brandName }}</span>
                 <span class="product-name">{{ p.productName }}</span>
                 <p>${{ p.price }}</p>
-                <a href="${p.productUrl}" target="_blank" class="link-btn">LINK</a>
+                <a href="{{ p.productUrl }}" target="_blank" class="link-btn">LINK</a>
             </div>
         {% endfor %}
     </div>
@@ -26,22 +26,11 @@
         const i = document.getElementById('aiIn');
         const o = document.getElementById('out');
 
-        const fixUrl = (url) => {
-            if (!url) return 'https://via.placeholder.com/200';
-            return url.startsWith('//') ? 'https:' + url : url;
-        };
-
         i.onkeypress = async (e) => {
             if (e.key === 'Enter') {
                 const val = i.value.trim();
+                if (val === "") { window.location.href = "/"; return; }
 
-                // --- NEW LOGIC: Empty search resets to randomized feed ---
-                if (val === "") {
-                    window.location.href = "/"; 
-                    return;
-                }
-
-                // Start search animation
                 o.style.opacity = "0.3";
 
                 const res = await fetch('/search', {
@@ -52,19 +41,22 @@
                 
                 const data = await res.json();
 
-                // Render the blended results
                 o.innerHTML = data.map(p => {
-                    const link = p.productUrl || p.url || "#";
-                    const shop = p.shop || "Other";
+                    var itemLink = p.productUrl || p.url || "#";
+                    var itemShop = (p.shop || "Archive").toUpperCase();
+                    var itemPrice = p.price || "0.00";
+                    var itemName = p.productName || "";
+                    var itemBrand = p.brandName || "";
+                    var itemImg = p.imageUrl || "https://via.placeholder.com/200";
                     
-                    // Using single quotes and '+' to build the string manually
-                    return '<div class="card" data-shop="' + shop.toLowerCase() + '">' +
-                        '<span class="shop-tag">' + shop + '</span>' +
-                        '<img src="' + p.imageUrl + '" onerror="this.src=\'https://via.placeholder.com/200\';">' +
-                        '<span class="brand">' + (p.brandName || "") + '</span>' +
-                        '<span class="product-name">' + (p.productName || "") + '</span>' +
-                        '<p>$' + (p.price || "0.00") + '</p>' +
-                        '<a href="' + link + '" target="_blank" class="link-btn">VIEW ON ' + shop.toUpperCase() + '</a>' +
+                    // FIXED: Corrected missing '+' signs and image attributes
+                    return '<div class="card" data-shop="' + (p.shop ? p.shop.toLowerCase() : "") + '">' +
+                        '<span class="shop-tag">' + itemShop + '</span>' +
+                        '<img src="' + itemImg + '" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src=\'https://ui-avatars.com/api/?name=No+Image\';">' +
+                        '<span class="brand">' + itemBrand + '</span>' +
+                        '<span class="product-name">' + itemName + '</span>' +
+                        '<p>$' + itemPrice + '</p>' +
+                        '<a href="' + itemLink + '" target="_blank" class="link-btn">VIEW ON ' + itemShop + '</a>' +
                         '</div>';
                 }).join('');
 

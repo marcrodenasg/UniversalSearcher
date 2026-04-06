@@ -46,17 +46,26 @@ async def run_vinted_scraper():
                     for item in final_items_list:
                         v_id = str(item.get('id'))
                         if v_id:
-                            # Mapping based on your screenshot's JSON structure
-                            new_items[v_id] = {
-                                "productName": item.get('name') or item.get('title'),
-                                "brandName": item.get('brand_title') or item.get('brand') or "Vinted",
-                                "price": item.get('price'),
-                                "imageUrl": item.get('photo', {}).get('url') or item.get('image'),
-                                "productUrl": f"https://www.vinted.com{item.get('url')}" if item.get('url') and not item.get('url').startswith('http') else item.get('url'),
-                                "shop": "Vinted", # Use a consistent string
-                                "category": "Luxury"
-                            }
-                            print(f"Captured: {item.get('title')}")
+                            raw_url = item.get('url')
+                            if raw_url and not raw_url.startswith('http'):
+                                full_url = f"https://www.vinted.com{raw_url}"
+                            else:
+                                full_url = raw_url or f"https://www.vinted.com/items/{v_id}"
+
+                        photo = item.get('photo', {})
+                        img = photo.get('url') if isinstance(photo, dict) else item.get('image')
+
+                        # Mapping based on your screenshot's JSON structure
+                        new_items[v_id] = {
+                            "productName": item.get('title') or item.get('name'),
+                            "brandName": item.get('brand_title') or item.get('brand') or "Vinted",
+                            "price": item.get('price'), 
+                            "imageUrl": img,
+                            "productUrl": full_url, # THIS IS THE KEY ONE
+                            "shop": "Vinted",
+                            "category": "Luxury"
+                        }
+                        print(f"Captured: {item.get('title')}")
 
                 except Exception as e:
                     # Occasionally Vinted sends encoded text instead of JSON
@@ -66,7 +75,7 @@ async def run_vinted_scraper():
         page.on("response", handle_response)
 
         for url in CATEGORIES:
-            print(f"🚀 Scraping Vinted Category: {url}")
+            print(f"Scraping Vinted Category: {url}")
             try:
                 await page.goto(url, wait_until="load")
                 await asyncio.sleep(5) 
@@ -82,7 +91,7 @@ async def run_vinted_scraper():
         # --- SAVE TO DATABASE ---
         if new_items:
             print(f"Found {len(new_items)} total items. Updating fashion.db...")
-            update_db(new_items)
+            update_db(new_items) # This calls the function in db_manager.py
             print("Database sync complete!")
         else:
             print("No items captured. Vinted might be blocking the request.")
