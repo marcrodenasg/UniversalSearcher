@@ -79,7 +79,7 @@ async def run_updater_scraper():
 
         # --- THE SQL SYNC ---
         if new_session_items:
-            print(f"\n💾 Syncing {len(new_session_items)} items to fashion.db...")
+            print(f"\nSyncing {len(new_session_items)} items to fashion.db...")
             init_db() # Ensure table exists
             update_db(new_session_items)
             print("Database sync complete.")

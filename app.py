@@ -16,7 +16,7 @@ EBAY_CERT_ID = os.getenv("EBAY_CERT_ID")
 
 current_ebay_token = None
 
-print("🔌 Connecting to fashion.db...")
+print("Connecting to fashion.db...")
 products = get_all_products()
 
 for p in products:
