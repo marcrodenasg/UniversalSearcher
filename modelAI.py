@@ -1,6 +1,7 @@
 # RUN THIS SCRIPT TO SEE HOW AI MAPS OUT DATA
 # Unnecessary but i think its interesting to look at and understand
 # If sample size / database increases it'll do a better job
+# WRITE THIS FIRST IN TERMINAL: rm embeddings.pt
 
 import torch
 import json
