@@ -43,7 +43,7 @@ if os.path.exists(cache_file):
     product_embeddings = torch.load(cache_file, map_location=torch.device('cpu'))
 
     if len(product_embeddings) != len(products):
-        print("🔄 Inventory changed! Re-indexing...")
+        print("Inventory changed! Re-indexing...")
         descriptions = [
             f"Item: {p['productName']} Brand: {p['brandName']} Category: {p['category']} Store: {p['shop']}" 
             for p in products
@@ -145,7 +145,7 @@ def index():
     shuffled_products = list(products)
     random.shuffle(shuffled_products)
     
-    return render_template('home.html', products=shuffled_products)
+    return render_template('index.html', products=shuffled_products)
 
 @app.route('/search', methods=['POST'])
 def ai_search():
